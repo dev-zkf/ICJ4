@@ -107,15 +107,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""dc79bc3f-1133-4f7f-98dd-7f1343551d9a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -501,17 +492,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""546b519a-abe3-4c3a-81be-590f74d34cb7"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1108,7 +1088,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_CharactherControls_Previous = m_CharactherControls.FindAction("Previous", throwIfNotFound: true);
         m_CharactherControls_Next = m_CharactherControls.FindAction("Next", throwIfNotFound: true);
         m_CharactherControls_Sprint = m_CharactherControls.FindAction("Sprint", throwIfNotFound: true);
-        m_CharactherControls_Newaction = m_CharactherControls.FindAction("New action", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1197,7 +1176,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_CharactherControls_Previous;
     private readonly InputAction m_CharactherControls_Next;
     private readonly InputAction m_CharactherControls_Sprint;
-    private readonly InputAction m_CharactherControls_Newaction;
     public struct CharactherControlsActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1211,7 +1189,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @Previous => m_Wrapper.m_CharactherControls_Previous;
         public InputAction @Next => m_Wrapper.m_CharactherControls_Next;
         public InputAction @Sprint => m_Wrapper.m_CharactherControls_Sprint;
-        public InputAction @Newaction => m_Wrapper.m_CharactherControls_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_CharactherControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1248,9 +1225,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
         }
 
         private void UnregisterCallbacks(ICharactherControlsActions instance)
@@ -1282,9 +1256,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
         }
 
         public void RemoveCallbacks(ICharactherControlsActions instance)
@@ -1476,7 +1447,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnPrevious(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnNewaction(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
