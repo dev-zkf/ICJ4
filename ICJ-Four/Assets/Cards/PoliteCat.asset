@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06f5cf65fa9734e4081b515a2ae4ed66, type: 3}
-  m_Name: Ben
+  m_Name: PoliteCat
   m_EditorClassIdentifier: 
-  Name: Ben
-  Description: Ben loves apples
-  Artwork: {fileID: -5626360987136007387, guid: 6f9d3c630fdc0bf4fbef9bd03bff08eb, type: 3}
-  ManaCost: 5
-  Attack: 2000
-  Health: 1
+  Name: Polite Cat
+  Description: Hes a extinguished gentleman.
+  Artwork: {fileID: -8540508010770660055, guid: ba35a146ba9844d48b38b940c4ab84d6, type: 3}
+  ManaCost: 3
+  Attack: 1
+  Health: 2

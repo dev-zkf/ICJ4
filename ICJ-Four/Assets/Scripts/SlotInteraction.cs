@@ -4,58 +4,58 @@ using UnityEngine.EventSystems;
 
 public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    private bool raised;
 
-	bool raised;
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        if (HasActiveChild() && !raised)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.activeSelf)
+                {
+                    child.GetComponentInChildren<CardSlot>().PopUp();
+                    raised = true;
+                }
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        
+        if (raised)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.activeSelf)
+                {
+                    child.GetComponentInChildren<CardSlot>().PopDown();
+                    raised = false;
+                }
+            }
+        }
     }
-	public void OnPointerEnter(PointerEventData eventData)
-	{
-		if (this.gameObject.transform.childCount > 0 && !raised)
-		{
-			for (int i = 0; i < gameObject.transform.childCount; i++)
-			{
-				if (gameObject.transform.GetChild(i).gameObject.activeSelf == true)
-				{
-					gameObject.transform.GetChild(i).GetComponentInChildren<CardSlot>().PopUp();
-					raised = true;
-				}
-			}
-		}
-	}
-	public void OnPointerExit(PointerEventData eventData)
-	{
-		if (this.gameObject.transform.childCount > 0 && raised)
-		{
-			for (int i = 0; i < gameObject.transform.childCount; i++)
-			{
-				if (gameObject.transform.GetChild(i).gameObject.activeSelf == true)
-				{
-					gameObject.transform.GetChild(i).GetComponentInChildren<CardSlot>().PopDown();
-					raised = false;
-				}
-			}
-		}
-	}
-	public void OnPointerClick(PointerEventData eventData)
-	{
-		if (this.gameObject.transform.childCount > 0)
-		{
-			for (int i = 0; i < gameObject.transform.childCount; i++)
-			{
-				if (gameObject.transform.GetChild(i).gameObject.activeSelf == true)
-				{
-					gameObject.transform.GetChild(i).GetComponentInChildren<CardSlot>().PlayCard();
-				}
-			}
-		}
-	}
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                child.GetComponentInChildren<CardSlot>().PlayCard();
+                // Reset raised state on play
+                raised = false;
+            }
+        }
+    }
+
+    private bool HasActiveChild()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf)
+                return true;
+        }
+        return false;
+    }
 }

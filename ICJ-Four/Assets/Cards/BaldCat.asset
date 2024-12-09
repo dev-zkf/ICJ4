@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f5cf65fa9734e4081b515a2ae4ed66, type: 3}
+  m_Name: BaldCat
+  m_EditorClassIdentifier: 
+  Name: Obese Bald Cat
+  Description: He ate too much cat food. Because of his "bigger" bones hes slow at
+    attacking.
+  Artwork: {fileID: 3963195596850170790, guid: 7fe4ed03faaf4a647839deeb5afb36aa, type: 3}
+  ManaCost: 3
+  Attack: 2
+  Health: 4

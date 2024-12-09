@@ -7,20 +7,18 @@ using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
-    public static CardManager instance;
     public List<CardSlot> deck = new List<CardSlot>();
     public List<CardSlot> discardPile = new List<CardSlot>();
+    public List<CardSlot> playedPile = new List<CardSlot>();
+    public List<CardSlot> Hand = new List<CardSlot>();
     public Transform[] cardSlots;
+    public Transform[] placeableSlots;
     public bool[] availableSlots;
+    public bool[] availablePlaceableSlots;
     public TMP_Text deckSizeText;
     public TMP_Text discardSizeText;
 	[Foldout("Settings")] public float onHoverPopAmount;
 	[Foldout("Settings")] public float onPlayPopAmount;
-	private void Awake()
-	{
-		if (instance == null)
-            instance = this;
-	}
 	void Start()
     {
         
@@ -31,7 +29,7 @@ public class CardManager : MonoBehaviour
         if (deckSizeText != null)
             deckSizeText.text = deck.Count.ToString();
         if (discardSizeText != null)
-            discardSizeText.text = deck.Count.ToString();
+            discardSizeText.text = discardPile.Count.ToString();
     }
     public void DrawCard()
     {
@@ -42,14 +40,16 @@ public class CardManager : MonoBehaviour
             {
                 if (availableSlots[i] == true)
                 {
-                    randCard.gameObject.SetActive(true);
+                    randCard.gameObject.SetActive(true); // incase its disabled
                     randCard.handIndex = i;
 
                     randCard.transform.SetParent(cardSlots[i]);
                     randCard.transform.localPosition = Vector3.zero;
+                    randCard.transform.localScale = Vector3.one;
                     randCard.hasBeenPlayed = false;
 
                     availableSlots[i] = false;
+                    Hand.Add(randCard);
                     deck.Remove(randCard);
                     return;
                 }

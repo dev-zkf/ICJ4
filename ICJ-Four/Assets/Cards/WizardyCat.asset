@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06f5cf65fa9734e4081b515a2ae4ed66, type: 3}
-  m_Name: John
+  m_Name: WizardyCat
   m_EditorClassIdentifier: 
-  Name: John
-  Description: John lemming, Eats lemons for diamonds beacuse he feels like it.
-  Artwork: {fileID: -697676565333083181, guid: 437028ea214bdfb4280d00ea0dc76f5b, type: 3}
-  ManaCost: 5
-  Attack: 1
-  Health: 10
+  Name: Wizard Cat
+  Description: Hes apart of the shadow wizard money gang, he also loves casting spells.
+  Artwork: {fileID: 727674393864819032, guid: 986b248364a721e429a7ddc5d0755bd2, type: 3}
+  ManaCost: 6
+  Attack: 4
+  Health: 5
