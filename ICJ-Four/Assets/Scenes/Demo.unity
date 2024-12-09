@@ -935,7 +935,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303482077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
@@ -1311,7 +1311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526762866}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
@@ -2023,7 +2023,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833778119}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
@@ -2421,8 +2421,8 @@ MonoBehaviour:
   availablePlaceableSlots: 
   deckSizeText: {fileID: 1255713221}
   discardSizeText: {fileID: 199053583}
-  onHoverPopAmount: 0.1
-  onPlayPopAmount: 0.2
+  onHoverPopAmount: 0.08
+  onPlayPopAmount: 0.1
 --- !u!1 &1076485094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2601,7 +2601,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116151509}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
@@ -3345,8 +3345,8 @@ MonoBehaviour:
   availablePlaceableSlots: 0101010101
   deckSizeText: {fileID: 1255713221}
   discardSizeText: {fileID: 199053583}
-  onHoverPopAmount: 0.1
-  onPlayPopAmount: 0.2
+  onHoverPopAmount: 0.08
+  onPlayPopAmount: 0.1
 --- !u!1 &1563502378
 GameObject:
   m_ObjectHideFlags: 0
@@ -4130,7 +4130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710098604}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
