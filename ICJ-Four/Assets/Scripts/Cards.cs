@@ -7,6 +7,10 @@ public class Cards : ScriptableObject
     public string Description;
 
     public Sprite Artwork;
+    public Sprite ArtBackground;
+    public Sprite Background;
+    public Sprite Nametag;
+    public Sprite DescriptionBox;
 
     public bool ManaCard;
     public int ManaCost;

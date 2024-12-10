@@ -12,6 +12,10 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text DescriptionText;
 
     public Image ArtworkImage;
+    public Image ArtBackground;
+    public Image Background;
+    public Image Nametag;
+    public Image DescriptionBox;
 
     public TMP_Text ManaText;
     public TMP_Text AttackText;

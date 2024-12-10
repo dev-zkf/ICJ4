@@ -16,6 +16,11 @@ MonoBehaviour:
   Description: He ate too much cat food. Because of his "bigger" bones hes slow at
     attacking.
   Artwork: {fileID: 3963195596850170790, guid: 7fe4ed03faaf4a647839deeb5afb36aa, type: 3}
+  ArtBackground: {fileID: 7798040792101027665, guid: e67b8550318b71846a9bb091bf0431a3, type: 3}
+  Background: {fileID: -5223652671442275714, guid: e5c8ac849f1a2ef4893de18d7735b836, type: 3}
+  Nametag: {fileID: 1832393804930818460, guid: 324aeebdb8315624d8b25fa77bcc3d4e, type: 3}
+  DescriptionBox: {fileID: -4942973117404418426, guid: d1f3c0a80435f3d4e9f8815b12353400, type: 3}
+  ManaCard: 0
   ManaCost: 3
   Attack: 2
   Health: 4
