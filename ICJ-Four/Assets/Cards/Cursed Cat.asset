@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f5cf65fa9734e4081b515a2ae4ed66, type: 3}
   m_Name: Cursed Cat
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Artwork: {fileID: 0}
-  ArtBackground: {fileID: 0}
-  Background: {fileID: 0}
-  Nametag: {fileID: 0}
-  DescriptionBox: {fileID: 0}
+  Name: Cursed Cat
+  Description: He is crossing the road.
+  Artwork: {fileID: 41128346210759441, guid: 15895d10dbc7bc447936b845f1f31a5e, type: 3}
+  ArtBackground: {fileID: 7798040792101027665, guid: e67b8550318b71846a9bb091bf0431a3, type: 3}
+  Background: {fileID: 6888576493121341014, guid: 1669d64ef4bb661468a7fbce69e2a510, type: 3}
+  Nametag: {fileID: 1832393804930818460, guid: 324aeebdb8315624d8b25fa77bcc3d4e, type: 3}
+  DescriptionBox: {fileID: -4942973117404418426, guid: d1f3c0a80435f3d4e9f8815b12353400, type: 3}
   ManaCard: 0
-  ManaCost: 0
-  Attack: 0
-  Health: 0
+  ManaCost: 1
+  Attack: 4
+  Health: 2

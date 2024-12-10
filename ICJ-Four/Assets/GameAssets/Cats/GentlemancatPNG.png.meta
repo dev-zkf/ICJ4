@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 76b368a93b7646a4d84392c8ddf1a825
+guid: abdcd5f06bbf1784693915d0eeda7a2d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1091060894787466164
-    second: CardBackgroundRare_0
+      213: -4381394315084992646
+    second: GentlemancatPNG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CardBackgroundRare_0
+      name: GentlemancatPNG_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 18
-        width: 113
-        height: 157
+        x: 10
+        y: 5
+        width: 42
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b370266a1a342f00800000000000000
-      internalID: 1091060894787466164
+      spriteID: a7f617485192233c0800000000000000
+      internalID: -4381394315084992646
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CardBackgroundRare_0: 1091060894787466164
+      GentlemancatPNG_0: -4381394315084992646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
