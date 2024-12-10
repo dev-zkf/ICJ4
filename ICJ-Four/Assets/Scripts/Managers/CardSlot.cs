@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class CardSlot : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class CardSlot : MonoBehaviour
 	public Owner owner;
 	public void PlayCard()
 	{
-		if (played || !GameManager.instance.isPlayerTurn) return;
+		if (played || owner == Owner.AI) return;
 
 		for (int i = 0; i < CardManager.instance.availablePlaceableSlots.Length; i++)
 		{
@@ -42,13 +43,21 @@ public class CardSlot : MonoBehaviour
 		if (played) return;
 
 		GameManager.instance.aiMana += GetCardData().ManaCost;
-		MoveToDiscard();
+        CardManager.instance.AI_availableSlots[handIndex] = true;
+        MoveToDiscard();
 		Debug.Log($"AI cast mana from card {GetCardData().name}");
+	}
+	private void PlayManaCard()
+	{
+		GameManager.instance.playerMana += GetCardData().ManaCost;
+        CardManager.instance.availableSlots[handIndex] = true;
+        MoveToDiscard();
+		Debug.Log($"Played mana card {GetCardData().name}");
 	}
 
 	public void AIPlayCard()
 	{
-		if (played || GameManager.instance.isPlayerTurn || GetCardData().ManaCard) return;
+		if (played || owner == Owner.Player || GetCardData().ManaCard) return;
 
 		for (int i = 0; i < CardManager.instance.AI_availablePlaceableSlots.Length; i++)
 		{
@@ -71,7 +80,7 @@ public class CardSlot : MonoBehaviour
 
 		GameManager.instance.discards--;
 
-		if (GameManager.instance.isPlayerTurn)
+		if (owner == Owner.Player)
 		{
 			GameManager.instance.playerMana += GameManager.instance.discardMana;
 			CardManager.instance.availableSlots[handIndex] = true;
@@ -95,44 +104,49 @@ public class CardSlot : MonoBehaviour
 		transform.localPosition = Vector3.zero;
 	}
 
-	private void PlayManaCard()
-	{
-		GameManager.instance.playerMana += GetCardData().ManaCost;
-		MoveToDiscard();
-		Debug.Log($"Played mana card {GetCardData().name}");
-	}
 
 	private void MoveToPlayArea(Transform playArea)
 	{
-		if (GameManager.instance.isPlayerTurn)
+		if (owner == Owner.Player)
 		{
 			CardManager.instance.Hand.Remove(this);
-		}
+            CardManager.instance.availableSlots[handIndex] = true;
+        }
 		else
 		{
 			CardManager.instance.aiHand.Remove(this);
-		}
+            CardManager.instance.AI_availableSlots[handIndex] = true;
+        }
 		CardManager.instance.playedPile.Add(this);
 		transform.SetParent(playArea);
 		transform.localPosition = Vector3.zero;
 		transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 	}
 
-	private void MoveToDiscard()
+    private void MoveToDiscard()
+    {
+        if (owner == Owner.Player)
+        {
+            CardManager.instance.Hand.Remove(this);
+        }
+        else
+        {
+            CardManager.instance.aiHand.Remove(this);
+        }
+        CardManager.instance.discardPile.Add(this);
+        gameObject.SetActive(false);
+    }
+	public void DiscardCardsBecauseISaySo()
 	{
-		if (GameManager.instance.isPlayerTurn)
-		{
-			CardManager.instance.Hand.Remove(this); 
-		}
-		else
-		{
-			CardManager.instance.aiHand.Remove(this); 
-		}
-		CardManager.instance.discardPile.Add(this);
-		gameObject.SetActive(false);
-	}
-
-	public Cards GetCardData()
+        CardManager.instance.availablePlaceableSlots[handIndex] = true;
+        CardManager.instance.AI_availablePlaceableSlots[handIndex] = true;
+        CardManager.instance.availableSlots[handIndex] = true;
+        CardManager.instance.AI_availableSlots[handIndex] = true;
+        CardManager.instance.playedPile.Remove(this);
+        CardManager.instance.discardPile.Add(this);
+        gameObject.SetActive(false);
+    }
+    public Cards GetCardData()
 	{
 		return GetComponent<CardDisplay>().card;
 	}

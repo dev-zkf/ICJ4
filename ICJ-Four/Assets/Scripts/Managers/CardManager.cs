@@ -64,7 +64,7 @@ public class CardManager : MonoBehaviour
 		{
 			if (slotAvailability[i])
 			{
-				AssignCardToSlot(randCard, slots[i], i, hand, slotAvailability);
+				AssignCardToSlot(randCard, slots[i], i, hand, slotAvailability, isPlayer);
 				deck.Remove(randCard);
 				GameManager.instance.draws--;
 				return;
@@ -72,11 +72,12 @@ public class CardManager : MonoBehaviour
 		}
 	}
 
-	private void AssignCardToSlot(CardSlot card, Transform slot, int index, List<CardSlot> hand, bool[] slotAvailability)
+	private void AssignCardToSlot(CardSlot card, Transform slot, int index, List<CardSlot> hand, bool[] slotAvailability, bool isPlayer)
 	{
 		card.gameObject.SetActive(true);
 		card.played = false;
 		card.handIndex = index;
+		card.owner = isPlayer ? CardSlot.Owner.Player : CardSlot.Owner.AI;
 		card.transform.SetParent(slot);
 		card.transform.localPosition = Vector3.zero;
 		card.transform.localScale = Vector3.one;
