@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using NaughtyAttributes;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Cards : ScriptableObject
 {
@@ -8,9 +8,10 @@ public class Cards : ScriptableObject
 
     public Sprite Artwork;
 
+    public bool ManaCard;
     public int ManaCost;
-    public int Attack;
-    public int Health; 
+    [DisableIf("ManaCard")] public int Attack;
+	[DisableIf("ManaCard")] public int Health;
 
 
     public void Print()

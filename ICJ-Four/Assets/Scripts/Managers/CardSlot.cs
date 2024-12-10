@@ -1,69 +1,145 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
-using NaughtyAttributes;
-using UnityEngine.XR;
-using System.Collections.Generic;
 using System.Collections;
+
 public class CardSlot : MonoBehaviour
 {
-    public CardManager cardManager;
-    public bool hasBeenPlayed;
-    public int handIndex;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+	public int handIndex;
+	public bool played;
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+	public enum Owner { Player, AI}
+
+	public Owner owner;
 	public void PlayCard()
 	{
-		if (!hasBeenPlayed)
+		if (played || !GameManager.instance.isPlayerTurn) return;
+
+		for (int i = 0; i < CardManager.instance.availablePlaceableSlots.Length; i++)
 		{
-            for (int i = 0; i < cardManager.availablePlaceableSlots.Length; i++)
-            {
-                if (cardManager.availablePlaceableSlots[i] == true)
-                {
-			        transform.localPosition += Vector3.up * cardManager.onPlayPopAmount * Screen.height;
-			        hasBeenPlayed = true;
-			        cardManager.availableSlots[handIndex] = true;
-                    StartCoroutine(SlightDelay(i));
-                    cardManager.availablePlaceableSlots[i] = false;
-                    return;
-                }
-                else
-                {
-                    PopDown();
-                }
-            }
+			var cardData = GetCardData();
+
+			if (cardData.ManaCard)
+			{
+				PlayManaCard();
+				return;
+			}
+
+			if (CardManager.instance.availablePlaceableSlots[i] && cardData.ManaCost <= GameManager.instance.playerMana)
+			{
+				GameManager.instance.playerMana -= cardData.ManaCost;
+				StartCoroutine(MoveToPlayAreaWithDelay(i));
+				played = true;
+				owner = Owner.Player;
+				CardManager.instance.availablePlaceableSlots[i] = false;
+				return;
+			}
+		}
+
+		PopDown();
+	}
+
+	public void AiCastMana()
+	{
+		if (played) return;
+
+		GameManager.instance.aiMana += GetCardData().ManaCost;
+		MoveToDiscard();
+		Debug.Log($"AI cast mana from card {GetCardData().name}");
+	}
+
+	public void AIPlayCard()
+	{
+		if (played || GameManager.instance.isPlayerTurn || GetCardData().ManaCard) return;
+
+		for (int i = 0; i < CardManager.instance.AI_availablePlaceableSlots.Length; i++)
+		{
+			if (CardManager.instance.AI_availablePlaceableSlots[i])
+			{
+				GameManager.instance.aiMana -= GetCardData().ManaCost;
+				MoveToPlayArea(CardManager.instance.AI_placeableSlots[i]);
+				CardManager.instance.AI_availablePlaceableSlots[i] = false;
+				played = true;
+				owner = Owner.AI;
+				Debug.Log($"AI played card {GetCardData().name}");
+				return;
+			}
 		}
 	}
-    public void PopUp()
-    {
-        transform.localPosition = Vector3.up * cardManager.onHoverPopAmount * Screen.height;
-    }
 
-    public void PopDown()
-    {
-        transform.localPosition = Vector3.zero; // Ensure it returns to the baseline
-    }
-    void MoveToPlayPile(int SlotIndex)
-    {
-            cardManager.playedPile.Add(this);
-            cardManager.Hand.Remove(this);
-            this.gameObject.transform.SetParent(cardManager.placeableSlots[SlotIndex]);
-            transform.localPosition = Vector3.zero;
-            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-            //gameObject.SetActive(false);
-    }
+	public void MoveToDiscardPile()
+	{
+		if (played || GameManager.instance.discards <= 0) return;
 
-   IEnumerator SlightDelay(int e)
-   {
-        yield return new WaitForSeconds(0.6f);
-        MoveToPlayPile(e);
-   }
+		GameManager.instance.discards--;
+
+		if (GameManager.instance.isPlayerTurn)
+		{
+			GameManager.instance.playerMana += GameManager.instance.discardMana;
+			CardManager.instance.availableSlots[handIndex] = true;
+		}
+		else
+		{
+			GameManager.instance.aiMana += GameManager.instance.discardMana;
+			CardManager.instance.AI_availableSlots[handIndex] = true;
+		}
+
+		MoveToDiscard();
+	}
+
+	public void PopUp()
+	{
+		transform.localPosition = Vector3.up * CardManager.instance.onHoverPopAmount * Screen.height;
+	}
+
+	public void PopDown()
+	{
+		transform.localPosition = Vector3.zero;
+	}
+
+	private void PlayManaCard()
+	{
+		GameManager.instance.playerMana += GetCardData().ManaCost;
+		MoveToDiscard();
+		Debug.Log($"Played mana card {GetCardData().name}");
+	}
+
+	private void MoveToPlayArea(Transform playArea)
+	{
+		if (GameManager.instance.isPlayerTurn)
+		{
+			CardManager.instance.Hand.Remove(this);
+		}
+		else
+		{
+			CardManager.instance.aiHand.Remove(this);
+		}
+		CardManager.instance.playedPile.Add(this);
+		transform.SetParent(playArea);
+		transform.localPosition = Vector3.zero;
+		transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+	}
+
+	private void MoveToDiscard()
+	{
+		if (GameManager.instance.isPlayerTurn)
+		{
+			CardManager.instance.Hand.Remove(this); 
+		}
+		else
+		{
+			CardManager.instance.aiHand.Remove(this); 
+		}
+		CardManager.instance.discardPile.Add(this);
+		gameObject.SetActive(false);
+	}
+
+	public Cards GetCardData()
+	{
+		return GetComponent<CardDisplay>().card;
+	}
+
+	private IEnumerator MoveToPlayAreaWithDelay(int slotIndex)
+	{
+		yield return new WaitForSeconds(0.2f);
+		MoveToPlayArea(CardManager.instance.placeableSlots[slotIndex]);
+	}
 }

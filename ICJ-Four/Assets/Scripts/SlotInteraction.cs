@@ -40,12 +40,16 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject.activeSelf)
+            if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Left)
             {
                 child.GetComponentInChildren<CardSlot>().PlayCard();
                 // Reset raised state on play
                 raised = false;
             }
+            else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right)
+            {
+                child.GetComponentInChildren<CardSlot>().MoveToDiscardPile();
+			}
         }
     }
 

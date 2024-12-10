@@ -1,9 +1,11 @@
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
+    [Expandable]
     public Cards card;
 
     public TMP_Text NameText;

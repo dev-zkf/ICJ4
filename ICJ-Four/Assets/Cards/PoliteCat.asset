@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Polite Cat
   Description: Hes a extinguished gentleman.
   Artwork: {fileID: -8540508010770660055, guid: ba35a146ba9844d48b38b940c4ab84d6, type: 3}
-  ManaCost: 3
+  ManaCard: 1
+  ManaCost: 10
   Attack: 1
   Health: 2
