@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f5cf65fa9734e4081b515a2ae4ed66, type: 3}
+  m_Name: AlienCat
+  m_EditorClassIdentifier: 
+  Name: 
+  Description: 
+  Artwork: {fileID: 0}
+  ArtBackground: {fileID: 0}
+  Background: {fileID: 0}
+  Nametag: {fileID: 0}
+  DescriptionBox: {fileID: 0}
+  ManaCard: 0
+  ManaCost: 0
+  Attack: 0
+  Health: 0
