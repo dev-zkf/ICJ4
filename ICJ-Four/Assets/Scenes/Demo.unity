@@ -783,6 +783,7 @@ GameObject:
   - component: {fileID: 137982902}
   - component: {fileID: 137982905}
   - component: {fileID: 137982904}
+  - component: {fileID: 137982906}
   m_Layer: 5
   m_Name: slot (2)
   m_TagString: Untagged
@@ -847,6 +848,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137982901}
   m_CullTransparentMesh: 1
+--- !u!114 &137982906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137982901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &159763805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1303,7 @@ GameObject:
   - component: {fileID: 215051895}
   - component: {fileID: 215051898}
   - component: {fileID: 215051897}
+  - component: {fileID: 215051899}
   m_Layer: 5
   m_Name: slot (4)
   m_TagString: Untagged
@@ -1350,6 +1368,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215051894}
   m_CullTransparentMesh: 1
+--- !u!114 &215051899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215051894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &216028001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable: 1
   hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
   clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
   discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
@@ -1915,6 +1950,7 @@ GameObject:
   - component: {fileID: 303482078}
   - component: {fileID: 303482081}
   - component: {fileID: 303482080}
+  - component: {fileID: 303482082}
   m_Layer: 5
   m_Name: slot (4)
   m_TagString: Untagged
@@ -1979,6 +2015,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303482077}
   m_CullTransparentMesh: 1
+--- !u!114 &303482082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303482077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &334694469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,6 +2318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable: 1
   hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
   clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
   discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
@@ -2541,6 +2594,7 @@ GameObject:
   - component: {fileID: 426753696}
   - component: {fileID: 426753699}
   - component: {fileID: 426753698}
+  - component: {fileID: 426753700}
   m_Layer: 5
   m_Name: slot (5)
   m_TagString: Untagged
@@ -2605,6 +2659,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426753695}
   m_CullTransparentMesh: 1
+--- !u!114 &426753700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426753695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &443374317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,6 +2900,7 @@ GameObject:
   - component: {fileID: 526762867}
   - component: {fileID: 526762870}
   - component: {fileID: 526762869}
+  - component: {fileID: 526762871}
   m_Layer: 5
   m_Name: slot (1)
   m_TagString: Untagged
@@ -2894,6 +2965,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526762866}
   m_CullTransparentMesh: 1
+--- !u!114 &526762871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526762866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &527016249
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,6 +4460,7 @@ GameObject:
   - component: {fileID: 833778120}
   - component: {fileID: 833778123}
   - component: {fileID: 833778122}
+  - component: {fileID: 833778124}
   m_Layer: 5
   m_Name: slot (3)
   m_TagString: Untagged
@@ -4437,6 +4525,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833778119}
   m_CullTransparentMesh: 1
+--- !u!114 &833778124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833778119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &836159811
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,6 +4990,7 @@ GameObject:
   - component: {fileID: 1025397454}
   - component: {fileID: 1025397457}
   - component: {fileID: 1025397456}
+  - component: {fileID: 1025397458}
   m_Layer: 5
   m_Name: slot (3)
   m_TagString: Untagged
@@ -4950,6 +5055,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025397453}
   m_CullTransparentMesh: 1
+--- !u!114 &1025397458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025397453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &1039840812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5518,6 +5639,7 @@ GameObject:
   - component: {fileID: 1116151510}
   - component: {fileID: 1116151513}
   - component: {fileID: 1116151512}
+  - component: {fileID: 1116151514}
   m_Layer: 5
   m_Name: slot (5)
   m_TagString: Untagged
@@ -5582,6 +5704,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116151509}
   m_CullTransparentMesh: 1
+--- !u!114 &1116151514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116151509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &1121271593
 GameObject:
   m_ObjectHideFlags: 0
@@ -6676,6 +6814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable: 1
   hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
   clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
   discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
@@ -7299,9 +7438,9 @@ MonoBehaviour:
   AI_availablePlaceableSlots: 0101010101
   deckSizeText: {fileID: 1255713221}
   discardSizeText: {fileID: 199053583}
-  onHoverPopAmount: 2
+  onHoverPopAmount: 1.5
   onPlayPopAmount: 2
-  UpAmount: 0
+  UpAmount: 15
 --- !u!1 &1563502378
 GameObject:
   m_ObjectHideFlags: 0
@@ -7419,15 +7558,16 @@ MonoBehaviour:
   DiscardCount: {fileID: 1041564098}
   P_HealthText: {fileID: 1232973803}
   A_HealthText: {fileID: 209797325}
+  STATEtext: {fileID: 1654709911}
   drawsPerTurn: 5
   discardsPerTurn: 3
   discardMana: 2
   sceneOnWin: 0
   sceneOnLoss: 0
   playerHealth: 20
-  playerMana: 10
+  playerMana: 0
   aiHealth: 20
-  aiMana: 10
+  aiMana: 0
   isPlayerTurn: 0
   turnCount: 2
   draws: 5
@@ -7596,6 +7736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable: 1
   hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
   clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
   discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
@@ -7651,6 +7792,144 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1654709909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1654709910}
+  - component: {fileID: 1654709912}
+  - component: {fileID: 1654709911}
+  m_Layer: 5
+  m_Name: BattleState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1654709910
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654709909}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1729816731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1654709911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654709909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'STATE
+
+'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -3.3427887, y: 0, z: 1.0129318, w: -4.9650874}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1654709912
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654709909}
+  m_CullTransparentMesh: 1
 --- !u!1 &1661990470
 GameObject:
   m_ObjectHideFlags: 0
@@ -8306,6 +8585,7 @@ GameObject:
   - component: {fileID: 1710098605}
   - component: {fileID: 1710098608}
   - component: {fileID: 1710098607}
+  - component: {fileID: 1710098609}
   m_Layer: 5
   m_Name: slot (2)
   m_TagString: Untagged
@@ -8370,6 +8650,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710098604}
   m_CullTransparentMesh: 1
+--- !u!114 &1710098609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710098604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &1729816730
 GameObject:
   m_ObjectHideFlags: 0
@@ -8399,6 +8695,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1255713219}
+  - {fileID: 1654709910}
   - {fileID: 199053585}
   - {fileID: 296695206}
   - {fileID: 443374318}
@@ -8739,6 +9036,7 @@ GameObject:
   - component: {fileID: 1816575852}
   - component: {fileID: 1816575855}
   - component: {fileID: 1816575854}
+  - component: {fileID: 1816575856}
   m_Layer: 5
   m_Name: slot (1)
   m_TagString: Untagged
@@ -8803,6 +9101,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816575851}
   m_CullTransparentMesh: 1
+--- !u!114 &1816575856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816575851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickable: 0
+  hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
+  clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
+  discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}
 --- !u!1 &1865539705
 GameObject:
   m_ObjectHideFlags: 0
@@ -9067,6 +9381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edd02bdda1c02c4cbacb7c1b7bca068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable: 1
   hoverSFX: {fileID: 8300000, guid: 768e18577f9f1ad4cb1cb6a5f021f2c2, type: 3}
   clickSFX: {fileID: 8300000, guid: 5fed1315c9ea29944b7106f773feda3d, type: 3}
   discardSFX: {fileID: 8300000, guid: 3c546d4e98590c042a7ca42f7b24cd30, type: 3}

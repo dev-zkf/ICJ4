@@ -10,6 +10,9 @@ public class CardSlot : MonoBehaviour
 	public enum Owner { Player, AI}
 
 	public Owner owner;
+
+	private Vector3 scale;
+	private int layer;
 	public void PlayCard()
 	{
 		if (played || owner == Owner.AI) return;
@@ -96,6 +99,8 @@ public class CardSlot : MonoBehaviour
 
 	public void PopUp()
 	{
+		layer = this.GetComponent<Canvas>().sortingOrder;
+		scale = transform.localScale;
 		transform.localPosition = Vector3.up * CardManager.instance.onHoverPopAmount * CardManager.instance.UpAmount;
 		this.GetComponent<Canvas>().sortingOrder++;
 		transform.localScale = Vector3.one * CardManager.instance.onHoverPopAmount;
@@ -104,8 +109,8 @@ public class CardSlot : MonoBehaviour
 	public void PopDown()
 	{
 		transform.localPosition = Vector3.zero;
-		this.GetComponent<Canvas>().sortingOrder--;
-		transform.localScale = Vector3.one;
+		this.GetComponent<Canvas>().sortingOrder = layer;
+		transform.localScale = scale;
 	}
 
 

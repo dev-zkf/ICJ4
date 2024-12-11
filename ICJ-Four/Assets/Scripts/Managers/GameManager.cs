@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	public TMP_Text DiscardCount;
 	public TMP_Text P_HealthText;
 	public TMP_Text A_HealthText;
+	public TMP_Text STATEtext;
 	public static GameManager instance;
 
 	[SerializeField, Foldout("Settings")] private int drawsPerTurn = 5;
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
 	private AiStates aiState;
 
+	private bool winnerSelected;
 	private void Awake()
 	{
 		if (instance == null) instance = this;
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
 	private void InitializeGame()
 	{
 		Debug.Log("Game initialized");
+		STATEtext.text = $""; // "hides text box"
 		turn = turnCount;
 		StartTurn();
 	}
@@ -116,77 +119,79 @@ public class GameManager : MonoBehaviour
 
 	private void ResolveBattles()
 	{
-
+		// Initialize player and AI stats
 		int playerHP = 0, playerATK = 0;
 		int aiHP = 0, aiATK = 0;
 
+		// Accumulate stats from played cards
 		foreach (var cardSlot in CardManager.instance.playedPile)
 		{
+			var cardData = cardSlot.GetCardData(); // Cache card data for better readability
+
 			if (cardSlot.owner == CardSlot.Owner.Player)
 			{
-				playerHP += cardSlot.GetCardData().Health;
-				playerATK += cardSlot.GetCardData().Attack;
+				playerHP += cardData.Health;
+				playerATK += cardData.Attack;
 			}
 			else if (cardSlot.owner == CardSlot.Owner.AI)
 			{
-				aiHP += cardSlot.GetCardData().Health;
-				aiATK += cardSlot.GetCardData().Attack;
+				aiHP += cardData.Health;
+				aiATK += cardData.Attack;
 			}
 		}
 
 		Debug.Log($"Battle Starts! Player: {playerHP} HP, {playerATK} ATK | AI: {aiHP} HP, {aiATK} ATK");
 
-
-
 		int round = 1;
-		int leftoverPlayerDamage = Mathf.Max(0, playerATK - aiHP); // Damage that Player ATK exceeds AI HP
-		int leftoverAIDamage = Mathf.Max(0, aiATK - playerHP);     // Damage that AI ATK exceeds Player HP
 
+		int leftoverPlayerDamage = Mathf.Max(0, playerATK - aiHP); // Damage Player dealt beyond AI's HP
+		int leftoverAIDamage = Mathf.Max(0, aiATK - playerHP);     // Damage AI dealt beyond Player's HP
+
+		// Simulate battle until one side's HP drops to zero
 		while (playerHP > 0 && aiHP > 0)
 		{
-			playerHP -= aiATK;
-			aiHP -= playerATK;
+			// Each side attacks simultaneously
+			aiHP = Mathf.Max(0, aiHP - playerATK);
+			playerHP = Mathf.Max(0, playerHP - aiATK);
 
-			Debug.Log($"Battle Round {round}: Player {playerHP} HP | AI {aiHP} HP");
+			Debug.Log($"Round {round}: Player {playerHP} HP | AI {aiHP} HP");
 			round++;
 		}
 
-		// Check who reached 0 HP first
-		if (playerHP <= 0 && aiHP <= 0)
-		{
-			if (playerHP > aiHP)
-			{
-				Debug.Log("AI reached 0 HP first - Player Wins!");
-				aiHealth -= leftoverPlayerDamage;
-				isPlayerTurn = true;
-			}
-			else if (aiHP > playerHP)
-			{
-				Debug.Log("Player reached 0 HP first - AI Wins!");
-				playerHealth -= leftoverAIDamage;
-				isPlayerTurn = false;
-			}
-			else
-			{
-				Debug.Log("Both reached 0 HP at the same time - It's a Tie!");
-				isPlayerTurn = !isPlayerTurn;
-			}
-		}
-		else if (playerHP > 0)
+		// Calculate leftover damage
+
+		Debug.Log(leftoverAIDamage);
+		Debug.Log(leftoverPlayerDamage);
+
+
+		// Determine the winner
+		if (playerHP > 0 && aiHP == 0 && !winnerSelected)
 		{
 			Debug.Log("Player Wins!");
-			aiHealth -= leftoverPlayerDamage;
+			aiHealth -= leftoverPlayerDamage; // Apply leftover damage to AI's total health
 			isPlayerTurn = true;
+			winnerSelected = true;
+			STATEtext.text = $"Player won";
 		}
-		else
+		else if (aiHP > 0 && playerHP == 0 && !winnerSelected)
 		{
 			Debug.Log("AI Wins!");
-			playerHealth -= leftoverAIDamage;
+			playerHealth -= leftoverAIDamage; // Apply leftover damage to Player's total health
 			isPlayerTurn = false;
+			winnerSelected = true;
+			STATEtext.text = $"AI won";
 		}
-
+		else if (!winnerSelected)
+		{
+			Debug.Log("It's a Tie!");
+			STATEtext.text = $"Tie";
+			isPlayerTurn = !isPlayerTurn; // Alternate turn in case of a tie
+		}
+		// Reset the game state with a delay
 		StartCoroutine(SlightResetDelay(2f));
 	}
+
+
 
 
 
@@ -224,6 +229,8 @@ public class GameManager : MonoBehaviour
 		ClearGame();
 		turn = turnCount;
 		StartTurn();
+		STATEtext.text = "";
+		winnerSelected = false;
 	}
 
 	private IEnumerator HandleAiTurn()

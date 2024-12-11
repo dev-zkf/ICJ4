@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private bool raised;
-
+    public bool clickable;
     public AudioClip hoverSFX;
     public AudioClip clickSFX;
     public AudioClip discardSFX;
@@ -45,14 +45,14 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Left)
+            if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Left && clickable)
             {
                 child.GetComponentInChildren<CardSlot>().PlayCard();
 				SoundFXManagergerg.Instance.PlaySoundFXClip(clickSFX, transform, 1f);
 				// Reset raised state on play
 				raised = false;
             }
-            else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right)
+            else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right && clickable)
             {
                 if (GameManager.instance.discards > 0)
 				    SoundFXManagergerg.Instance.PlaySoundFXClip(discardSFX, transform, 1.5f);
