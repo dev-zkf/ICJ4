@@ -33,6 +33,7 @@ public class CardManager : MonoBehaviour
 	[Header("Settings")]
 	[Foldout("Settings")] public float onHoverPopAmount;
 	[Foldout("Settings")] public float onPlayPopAmount;
+	[Foldout("Settings")] public float UpAmount;
 
 	private void Awake()
 	{
@@ -54,7 +55,8 @@ public class CardManager : MonoBehaviour
 	public void DrawCard(bool isPlayer)
 	{
 		if (deck.Count < 1 || GameManager.instance.draws <= 0) return;
-
+		if (isPlayer && !GameManager.instance.isPlayerTurn) return;
+		if (!isPlayer && GameManager.instance.isPlayerTurn) return;
 		CardSlot randCard = deck[Random.Range(0, deck.Count)];
 		Transform[] slots = isPlayer ? cardSlots : aiSlots;
 		bool[] slotAvailability = isPlayer ? availableSlots : AI_availableSlots;
@@ -62,11 +64,11 @@ public class CardManager : MonoBehaviour
 
 		for (int i = 0; i < slotAvailability.Length; i++)
 		{
-			if (slotAvailability[i])
+			if (slotAvailability[i] && GameManager.instance.draws > 0)
 			{
+				GameManager.instance.draws--;
 				AssignCardToSlot(randCard, slots[i], i, hand, slotAvailability, isPlayer);
 				deck.Remove(randCard);
-				GameManager.instance.draws--;
 				return;
 			}
 		}

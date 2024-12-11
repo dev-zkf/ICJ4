@@ -6,6 +6,10 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     private bool raised;
 
+    public AudioClip hoverSFX;
+    public AudioClip clickSFX;
+    public AudioClip discardSFX;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (HasActiveChild() && !raised)
@@ -16,6 +20,7 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 {
                     child.GetComponentInChildren<CardSlot>().PopUp();
                     raised = true;
+                    SoundFXManagergerg.Instance.PlaySoundFXClip(hoverSFX, transform, 1f);
                 }
             }
         }
@@ -43,11 +48,14 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Left)
             {
                 child.GetComponentInChildren<CardSlot>().PlayCard();
-                // Reset raised state on play
-                raised = false;
+				SoundFXManagergerg.Instance.PlaySoundFXClip(clickSFX, transform, 1f);
+				// Reset raised state on play
+				raised = false;
             }
             else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right)
             {
+                if (GameManager.instance.discards > 0)
+				    SoundFXManagergerg.Instance.PlaySoundFXClip(discardSFX, transform, 1.5f);
                 child.GetComponentInChildren<CardSlot>().MoveToDiscardPile();
 			}
         }

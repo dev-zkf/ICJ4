@@ -96,12 +96,16 @@ public class CardSlot : MonoBehaviour
 
 	public void PopUp()
 	{
-		transform.localPosition = Vector3.up * CardManager.instance.onHoverPopAmount * Screen.height;
+		transform.localPosition = Vector3.up * CardManager.instance.onHoverPopAmount * CardManager.instance.UpAmount;
+		this.GetComponent<Canvas>().sortingOrder++;
+		transform.localScale = Vector3.one * CardManager.instance.onHoverPopAmount;
 	}
 
 	public void PopDown()
 	{
 		transform.localPosition = Vector3.zero;
+		this.GetComponent<Canvas>().sortingOrder--;
+		transform.localScale = Vector3.one;
 	}
 
 
@@ -120,7 +124,7 @@ public class CardSlot : MonoBehaviour
 		CardManager.instance.playedPile.Add(this);
 		transform.SetParent(playArea);
 		transform.localPosition = Vector3.zero;
-		transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+		transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
 	}
 
     private void MoveToDiscard()
@@ -138,10 +142,6 @@ public class CardSlot : MonoBehaviour
     }
 	public void DiscardCardsBecauseISaySo()
 	{
-        CardManager.instance.availablePlaceableSlots[handIndex] = true;
-        CardManager.instance.AI_availablePlaceableSlots[handIndex] = true;
-        CardManager.instance.availableSlots[handIndex] = true;
-        CardManager.instance.AI_availableSlots[handIndex] = true;
         CardManager.instance.playedPile.Remove(this);
         CardManager.instance.discardPile.Add(this);
         gameObject.SetActive(false);

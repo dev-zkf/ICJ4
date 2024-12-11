@@ -23,8 +23,8 @@ public class SoundFXManagergerg : MonoBehaviour
         //assign the audioClip
         audioSource.clip = audioClip;
 
-        //asign volume
-        audioSource.volume = volume;
+		//asign volume
+		audioSource.volume = volume;
 
         //play sound
         audioSource.Play();

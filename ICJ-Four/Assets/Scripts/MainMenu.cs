@@ -1,13 +1,18 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame()
+    [Scene] public int scene;
+    public AudioClip onClickSFX;
+    public AudioClip onHoverSFX;
+    public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(scene);
     }
 
 
@@ -16,4 +21,14 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    public void playEnterSFX()
+    {
+		SoundFXManagergerg.Instance.PlaySoundFXClip(onClickSFX, transform, 1f);
+	}
+    public void playHoverSFX()
+    {
+		SoundFXManagergerg.Instance.PlaySoundFXClip(onHoverSFX, transform, 1f);
+	}
+
 }
