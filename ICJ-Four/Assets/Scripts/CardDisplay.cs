@@ -31,6 +31,10 @@ public class CardDisplay : MonoBehaviour
             DescriptionText.text = card.Description;
 
             ArtworkImage.sprite = card.Artwork;
+            ArtBackground.sprite = card.ArtBackground;
+            Background.sprite = card.Background;
+            Nametag.sprite = card.Nametag;
+            DescriptionBox.sprite = card.DescriptionBox;
 
             ManaText.text = card.ManaCost.ToString();
             AttackText.text = card.Attack.ToString();

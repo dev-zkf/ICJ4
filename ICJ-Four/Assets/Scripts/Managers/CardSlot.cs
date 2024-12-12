@@ -13,6 +13,11 @@ public class CardSlot : MonoBehaviour
 
 	private Vector3 scale;
 	private int layer;
+
+	public void Start()
+	{
+		layer = this.GetComponent<Canvas>().sortingOrder;
+	}
 	public void PlayCard()
 	{
 		if (played || owner == Owner.AI) return;
@@ -71,6 +76,7 @@ public class CardSlot : MonoBehaviour
 				CardManager.instance.AI_availablePlaceableSlots[i] = false;
 				played = true;
 				owner = Owner.AI;
+				StartCoroutine(AiTouchCards());
 				Debug.Log($"AI played card {GetCardData().name}");
 				return;
 			}
@@ -96,10 +102,29 @@ public class CardSlot : MonoBehaviour
 
 		MoveToDiscard();
 	}
+	public void AntiSoftLockDiscard()
+	{
+		if (played) return;
 
+		if (owner == Owner.Player)
+		{
+			GameManager.instance.playerMana += GameManager.instance.discardMana;
+			CardManager.instance.availableSlots[handIndex] = true;
+		}
+		else
+		{
+			GameManager.instance.aiMana += GameManager.instance.discardMana;
+			CardManager.instance.AI_availableSlots[handIndex] = true;
+		}
+
+		MoveToDiscard();
+	}
+
+
+	
 	public void PopUp()
 	{
-		layer = this.GetComponent<Canvas>().sortingOrder;
+		if (transform.localScale == Vector3.zero) return;
 		scale = transform.localScale;
 		transform.localPosition = Vector3.up * CardManager.instance.onHoverPopAmount * CardManager.instance.UpAmount;
 		this.GetComponent<Canvas>().sortingOrder++;
@@ -110,7 +135,7 @@ public class CardSlot : MonoBehaviour
 	{
 		transform.localPosition = Vector3.zero;
 		this.GetComponent<Canvas>().sortingOrder = layer;
-		transform.localScale = scale;
+		if (scale == Vector3.zero) transform.localScale = Vector3.one; else transform.localScale = scale;
 	}
 
 
@@ -125,7 +150,7 @@ public class CardSlot : MonoBehaviour
 		{
 			CardManager.instance.aiHand.Remove(this);
             CardManager.instance.AI_availableSlots[handIndex] = true;
-        }
+		}
 		CardManager.instance.playedPile.Add(this);
 		transform.SetParent(playArea);
 		transform.localPosition = Vector3.zero;
@@ -160,5 +185,12 @@ public class CardSlot : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.2f);
 		MoveToPlayArea(CardManager.instance.placeableSlots[slotIndex]);
+	}
+
+	private IEnumerator AiTouchCards()
+	{
+		PopUp();
+		yield return new WaitForSeconds(0.5f);
+		PopDown();
 	}
 }

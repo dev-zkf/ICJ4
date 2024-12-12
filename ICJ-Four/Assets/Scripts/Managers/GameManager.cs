@@ -86,34 +86,53 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			isPlayerTurn = !isPlayerTurn;
 			StartTurn();
 		}
 	}
 
 	private void HandleGameStates()
 	{
+		if (discards <= 0 && CardManager.instance.Hand.Count > 0)
+		{
+			foreach (var cardSlot in CardManager.instance.Hand.ToArray())
+			{
+				if (cardSlot.GetCardData().ManaCost > playerMana && !cardSlot.GetCardData().ManaCard)
+				{
+					Debug.Log($"Damage discard due to no mana, discards {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {playerMana}");
+					cardSlot.AntiSoftLockDiscard();
+					playerHealth -= 5;
+				}
+			}
+		}
+
 		if (CardManager.instance.deck.Count <= 0)
 		{
 			CardManager.instance.Shuffle();
 		}
 
-		if (isPlayerTurn && draws <= 0 && CardManager.instance.Hand.Count == 0)
+		if (isPlayerTurn && draws <= 0 && CardManager.instance.Hand.Count == 0 && !winnerSelected && turn > 0)
 		{
+			isPlayerTurn = false;
 			EndTurn();
 		}
 		
-		if (aiHealth <= 0)
+		if (aiHealth <= 0 && playerHealth > 0)
 		{
 			aiHealth = 0;
 			// Player Won Entire Game
 			SceneManager.LoadScene(sceneOnWin);
 		}
-		else if (playerHealth <= 0)
+		else if (playerHealth <= 0 && aiHealth > 0)
 		{
 			playerHealth = 0;
 			// Ai Won Entire Game
 			SceneManager.LoadScene(sceneOnLoss);
+		}
+		else if (playerHealth <= 0 && aiHealth <= 0)
+		{
+			playerHealth++;
+			aiHealth++;
+			Debug.Log("tie giving hp back to conclude match");
 		}
 	}
 
@@ -143,53 +162,130 @@ public class GameManager : MonoBehaviour
 		Debug.Log($"Battle Starts! Player: {playerHP} HP, {playerATK} ATK | AI: {aiHP} HP, {aiATK} ATK");
 
 		int round = 1;
+		int playerLeftoverDamage;
+		int aiLeftoverDamage;
+		// Precalculate potential damage to apply to loser's real HP
 
-		int leftoverPlayerDamage = Mathf.Max(0, playerATK - aiHP); // Damage Player dealt beyond AI's HP
-		int leftoverAIDamage = Mathf.Max(0, aiATK - playerHP);     // Damage AI dealt beyond Player's HP
-
-		// Simulate battle until one side's HP drops to zero
-		while (playerHP > 0 && aiHP > 0)
+		if (aiHP <= 0)
 		{
-			// Each side attacks simultaneously
-			aiHP = Mathf.Max(0, aiHP - playerATK);
-			playerHP = Mathf.Max(0, playerHP - aiATK);
-
-			Debug.Log($"Round {round}: Player {playerHP} HP | AI {aiHP} HP");
-			round++;
+			playerLeftoverDamage = Mathf.Max(0, playerATK);
+		}
+		else
+		{
+			playerLeftoverDamage = Mathf.Max(0, playerATK - aiHP);
 		}
 
-		// Calculate leftover damage
 
-		Debug.Log(leftoverAIDamage);
-		Debug.Log(leftoverPlayerDamage);
-
-
-		// Determine the winner
-		if (playerHP > 0 && aiHP == 0 && !winnerSelected)
+		if (playerHP <= 0)
 		{
-			Debug.Log("Player Wins!");
-			aiHealth -= leftoverPlayerDamage; // Apply leftover damage to AI's total health
-			isPlayerTurn = true;
+			aiLeftoverDamage = Mathf.Max(0, aiATK);
+		}
+		else
+		{
+			aiLeftoverDamage = Mathf.Max(0, aiATK - playerHP);
+		}
+
+
+		// Simulate battle with tick-based damage until one side's HP drops to zero
+			// Player's ticks
+		for (int i = 0; i < playerATK; i++)
+		{
+			if (aiHP > 0)
+			{
+				aiHP--;
+			}
+		}
+
+		// AI's ticks
+		for (int i = 0; i < aiATK; i++)
+		{
+			if (playerHP > 0)
+			{
+				playerHP--;
+			}
+		}
+
+		if (playerHP > aiHP && playerATK >= aiHP || playerHP == aiHP && playerATK > aiATK) // player has more hp than ai and can also kill him he wins
+		{
+			if (winnerSelected) return;
+			PlayerWin(playerLeftoverDamage);
+		}
+		else if (playerHP < aiHP && aiATK >= playerHP || playerHP == aiHP && aiATK > playerATK)
+		{
+			if (winnerSelected) return;
+			AiWin(aiLeftoverDamage);
+		}
+		else
+		{
+			if (aiHP == playerHP && aiATK == playerATK)
+			{
+				if (winnerSelected) return;
+
+				Debug.Log("It's a Tie!");
+				STATEtext.text = "Tie";
+				playerHealth -= 2;
+				aiHealth -= 2;
+				isPlayerTurn = !isPlayerTurn;
+				winnerSelected = true;
+				StartCoroutine(SlightResetDelay(2f));
+			}
+		}
+		Debug.Log($"Round {round}: Player {playerHP} HP | AI {aiHP} HP");
+		/* old win system
+		// If somehow both are eliminated in the same tick
+		if (playerHP <= 0 && aiHP <= 0 && !winnerSelected)
+		{
+			Debug.Log("Both Eliminated! Resolving by Stats...");
+			if (playerHP > aiHP)
+			{
+				Debug.Log("Player Wins by Remaining Stats!");
+				isPlayerTurn = true;
+				STATEtext.text = "Player won";
+				aiHealth -= playerLeftoverDamage; // Apply leftover damage only once
+			}
+			else if (aiHP > playerHP)
+			{
+				Debug.Log("AI Wins by Remaining Stats!");
+				isPlayerTurn = false;
+				STATEtext.text = "AI won";
+				playerHealth -= aiLeftoverDamage; // Apply leftover damage only once
+			}
+			else
+			{
+				Debug.Log("It's a Tie!");
+				STATEtext.text = "Tie";
+				playerHealth -= 2;
+				aiHealth -= 2;   
+				isPlayerTurn = !isPlayerTurn;
+			}
 			winnerSelected = true;
-			STATEtext.text = $"Player won";
 		}
-		else if (aiHP > 0 && playerHP == 0 && !winnerSelected)
-		{
-			Debug.Log("AI Wins!");
-			playerHealth -= leftoverAIDamage; // Apply leftover damage to Player's total health
-			isPlayerTurn = false;
-			winnerSelected = true;
-			STATEtext.text = $"AI won";
-		}
-		else if (!winnerSelected)
-		{
-			Debug.Log("It's a Tie!");
-			STATEtext.text = $"Tie";
-			isPlayerTurn = !isPlayerTurn; // Alternate turn in case of a tie
-		}
+
 		// Reset the game state with a delay
 		StartCoroutine(SlightResetDelay(2f));
+		*/
 	}
+
+
+
+	private void PlayerWin(int playerLeftoverDamage)
+	{
+		aiHealth -= playerLeftoverDamage; // Apply leftover damage only once
+		winnerSelected = true;
+		isPlayerTurn = true;
+		STATEtext.text = "Player won";
+		StartCoroutine(SlightResetDelay(2f));
+
+	}
+	private void AiWin(int aiLeftoverDamage)
+	{
+		playerHealth -= aiLeftoverDamage; // Apply leftover damage only once
+		winnerSelected = true;
+		isPlayerTurn = false;
+		STATEtext.text = "AI won";
+		StartCoroutine(SlightResetDelay(2f));
+	}
+
 
 
 
@@ -228,9 +324,9 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(delay);
 		ClearGame();
 		turn = turnCount;
-		StartTurn();
 		STATEtext.text = "";
 		winnerSelected = false;
+		StartTurn();
 	}
 
 	private IEnumerator HandleAiTurn()
@@ -242,7 +338,7 @@ public class GameManager : MonoBehaviour
 			switch (aiState)
 			{
 				case AiStates.Draw:
-					while (draws > 0 && CardManager.instance.aiHand.Count < 5)
+					while (draws > 0 && CardManager.instance.aiHand.Count < 5 && CardManager.instance.deck.Count > 0)
 					{
 						CardManager.instance.DrawCard(false);
 						yield return new WaitForSeconds(delay);
@@ -264,26 +360,37 @@ public class GameManager : MonoBehaviour
 					break;
 
 				case AiStates.CastCards:
-					bool cardPlayed = false;
 					foreach (var cardSlot in CardManager.instance.aiHand.ToArray())
 					{
 						var card = cardSlot.GetComponent<CardDisplay>().card;
 						if (card.ManaCost <= aiMana)
 						{
 							cardSlot.AIPlayCard();
-							cardPlayed = true;
+							yield return new WaitForSeconds(delay);
+						}
+						else if (card.ManaCost > aiMana)
+						{
+							if (discards <= 0 && !cardSlot.GetCardData().ManaCard)
+							{
+								Debug.Log($"Damage discard due to no mana, discards {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {aiMana}");
+								cardSlot.AntiSoftLockDiscard();
+								aiHealth -= 5;
+							}
+							else
+							{
+								Debug.Log($"Discarded {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {aiMana}");
+								cardSlot.MoveToDiscardPile();
+							}
 							yield return new WaitForSeconds(delay);
 						}
 					}
-					if (!cardPlayed)
-					{
-						aiState = AiStates.Discard;
-					}
+					aiState = AiStates.EndTurn;
 					break;
 
-				case AiStates.Discard:
+				case AiStates.Discard: // for now discard is skipped 
 					foreach (var cardSlot in CardManager.instance.aiHand.ToArray())
 					{
+						Debug.Log($"Discarded {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {aiMana}");
 						cardSlot.MoveToDiscardPile();
 						yield return new WaitForSeconds(delay);
 					}
@@ -291,6 +398,7 @@ public class GameManager : MonoBehaviour
 					break;
 
 				case AiStates.EndTurn:
+					isPlayerTurn = true;
 					EndTurn();
 					break;
 			}

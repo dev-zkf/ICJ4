@@ -21,6 +21,6 @@ MonoBehaviour:
   Nametag: {fileID: 1832393804930818460, guid: 324aeebdb8315624d8b25fa77bcc3d4e, type: 3}
   DescriptionBox: {fileID: -4942973117404418426, guid: d1f3c0a80435f3d4e9f8815b12353400, type: 3}
   ManaCard: 0
-  ManaCost: 3
-  Attack: 2
-  Health: 4
+  ManaCost: 5
+  Attack: 4
+  Health: 2
