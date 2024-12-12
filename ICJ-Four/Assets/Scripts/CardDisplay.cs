@@ -14,8 +14,11 @@ public class CardDisplay : MonoBehaviour
     public Image ArtworkImage;
     public Image ArtBackground;
     public Image Background;
+    public Image Foreground;
     public Image Nametag;
     public Image DescriptionBox;
+    public Image ManaBox;
+    public Image Border;
 
     public TMP_Text ManaText;
     public TMP_Text AttackText;
@@ -35,6 +38,9 @@ public class CardDisplay : MonoBehaviour
             Background.sprite = card.Background;
             Nametag.sprite = card.Nametag;
             DescriptionBox.sprite = card.DescriptionBox;
+            if (card.Foreground != null) Foreground.sprite = card.Foreground;
+            if(card.ManaBox != null) ManaBox.sprite = card.ManaBox;
+            if (card.Border != null) Border.sprite = card.Border;
 
             ManaText.text = card.ManaCost.ToString();
             AttackText.text = card.Attack.ToString();

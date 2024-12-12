@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 495b791308d436541b72c998eff8a506
+guid: 4c1b17b08d38b624aba795cb0fd9c5b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2483750932006425384
-    second: XX_0
+      213: -1141325964752286863
+    second: CatNipPNG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: XX_0
+      name: CatNipPNG_0
       rect:
         serializedVersion: 2
-        x: 157
-        y: 155
-        width: 627
-        height: 625
+        x: 15
+        y: 9
+        width: 34
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 823d9cc205e087220800000000000000
-      internalID: 2483750932006425384
+      spriteID: 17b820205123920f0800000000000000
+      internalID: -1141325964752286863
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      XX_0: 2483750932006425384
+      CatNipPNG_0: -1141325964752286863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

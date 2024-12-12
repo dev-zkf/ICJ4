@@ -9,8 +9,11 @@ public class Cards : ScriptableObject
     public Sprite Artwork;
     public Sprite ArtBackground;
     public Sprite Background;
+    public Sprite Foreground;
     public Sprite Nametag;
     public Sprite DescriptionBox;
+    public Sprite ManaBox;
+    public Sprite Border;
 
     public bool ManaCard;
     public int ManaCost;

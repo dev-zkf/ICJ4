@@ -4,7 +4,6 @@ using TMPro;
 using NaughtyAttributes;
 using UnityEngine;
 using System.Linq;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField, Foldout("Settings")] public int discardMana = 2;
 	[SerializeField, Scene, Foldout("Settings")] public int sceneOnWin;
 	[SerializeField, Scene, Foldout("Settings")] public int sceneOnLoss;
+	[SerializeField, Scene, Foldout("Settings")] public int mainMenu;
 
 	[Foldout("Player Settings")] public int playerHealth = 20;
 	[Foldout("Player Settings")] public int playerMana = 10;
@@ -77,7 +77,10 @@ public class GameManager : MonoBehaviour
 			StartCoroutine(HandleAiTurn());
 		}
 	}
-
+	public void LoadMenu()
+	{
+        SceneManager.LoadScene(mainMenu);
+    }
 	private void EndTurn()
 	{
 		turn--;
