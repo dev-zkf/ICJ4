@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
 	public TMP_Text A_HealthText;
 	public TMP_Text STATEtext;
 	public static GameManager instance;
+    public AudioClip NuhUhSFX;
 
-	[SerializeField, Foldout("Settings")] private int drawsPerTurn = 5;
+    [SerializeField, Foldout("Settings")] private int drawsPerTurn = 5;
 	[SerializeField, Foldout("Settings")] private int discardsPerTurn = 5;
 	[SerializeField, Foldout("Settings")] public int discardMana = 2;
 	[SerializeField, Scene, Foldout("Settings")] public int sceneOnWin;
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
 		InitializeGame();
 	}
 
-	private void FixedUpdate()
+	private void LateUpdate()
 	{
 		UpdateUI();
 		HandleGameStates();
@@ -92,18 +93,7 @@ public class GameManager : MonoBehaviour
 
 	private void HandleGameStates()
 	{
-		if (discards <= 0 && CardManager.instance.Hand.Count > 0)
-		{
-			foreach (var cardSlot in CardManager.instance.Hand.ToArray())
-			{
-				if (cardSlot.GetCardData().ManaCost > playerMana && !cardSlot.GetCardData().ManaCard)
-				{
-					Debug.Log($"Damage discard due to no mana, discards {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {playerMana}");
-					cardSlot.AntiSoftLockDiscard();
-					playerHealth -= 5;
-				}
-			}
-		}
+
 
 		if (CardManager.instance.deck.Count <= 0)
 		{
@@ -115,8 +105,29 @@ public class GameManager : MonoBehaviour
 			isPlayerTurn = false;
 			EndTurn();
 		}
-		
-		if (aiHealth <= 0 && playerHealth > 0)
+
+        if (discards <= 0 && CardManager.instance.Hand.Count > 0)
+        {
+            // Iterate through the hand safely by copying it to an array
+            var handCopy = CardManager.instance.Hand.ToArray();
+
+            foreach (var cardSlot in handCopy)
+            {
+                if (cardSlot.GetCardData().ManaCost > playerMana && !cardSlot.GetCardData().ManaCard && CardManager.instance.Hand.Count > 0 && !cardSlot.played)
+                {
+					// Exit the loop if the player has no more cards or health is too low
+                    if (CardManager.instance.Hand.Count == 0 || playerHealth <= 0)
+                    {
+                        break;
+                    }
+                    Debug.Log($"Damage discard due to no mana, discards {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {playerMana}");
+                    cardSlot.AntiSoftLockDiscard();
+                }
+            }
+        }
+
+
+        if (aiHealth <= 0 && playerHealth > 0)
 		{
 			aiHealth = 0;
 			// Player Won Entire Game
@@ -372,9 +383,12 @@ public class GameManager : MonoBehaviour
 						{
 							if (discards <= 0 && !cardSlot.GetCardData().ManaCard)
 							{
-								Debug.Log($"Damage discard due to no mana, discards {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {aiMana}");
+                                if (CardManager.instance.aiHand.Count == 0 || aiHealth <= 0)
+                                {
+									yield break; // hope this does smthing
+                                }
+                                Debug.Log($"Damage discard due to no mana, discards {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {aiMana}");
 								cardSlot.AntiSoftLockDiscard();
-								aiHealth -= 5;
 							}
 							else
 							{
@@ -384,10 +398,13 @@ public class GameManager : MonoBehaviour
 							yield return new WaitForSeconds(delay);
 						}
 					}
-					aiState = AiStates.EndTurn;
+					if (CardManager.instance.aiHand.Count > 0)
+						aiState = AiStates.Discard;
+					else 
+						aiState = AiStates.EndTurn;
 					break;
 
-				case AiStates.Discard: // for now discard is skipped 
+				case AiStates.Discard: // for now discard is skipped unless somehow has cards in hand
 					foreach (var cardSlot in CardManager.instance.aiHand.ToArray())
 					{
 						Debug.Log($"Discarded {cardSlot.GetCardData().name} {cardSlot.GetCardData().ManaCost} | {aiMana}");

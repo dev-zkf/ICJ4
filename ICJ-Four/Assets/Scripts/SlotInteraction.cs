@@ -16,7 +16,7 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             foreach (Transform child in transform)
             {
-                if (child.gameObject.activeSelf)
+                if (child.gameObject.activeSelf && child.GetComponent<CardSlot>() != null)
                 {
                     child.GetComponentInChildren<CardSlot>().PopUp();
                     raised = true;
@@ -32,7 +32,7 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             foreach (Transform child in transform)
             {
-                if (child.gameObject.activeSelf)
+                if (child.gameObject.activeSelf && child.GetComponent<CardSlot>() != null)
                 {
                     child.GetComponentInChildren<CardSlot>().PopDown();
                     raised = false;
@@ -45,14 +45,14 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Left && clickable)
+            if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Left && clickable && child.GetComponent<CardSlot>() != null)
             {
                 child.GetComponentInChildren<CardSlot>().PlayCard();
 				SoundFXManagergerg.Instance.PlaySoundFXClip(clickSFX, transform, 1f);
 				// Reset raised state on play
 				raised = false;
             }
-            else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right && clickable)
+            else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right && clickable && child.GetComponent<CardSlot>() != null)
             {
                 if (GameManager.instance.discards > 0)
 				    SoundFXManagergerg.Instance.PlaySoundFXClip(discardSFX, transform, 1.5f);

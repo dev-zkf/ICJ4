@@ -605,10 +605,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6553258452192188786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.5, y: -0.9000015}
-  m_SizeDelta: {x: -128.47, y: -27.3998}
+  m_AnchoredPosition: {x: -18.07, y: -14}
+  m_SizeDelta: {x: 15.529999, y: 11.600204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7192362711656614255
 CanvasRenderer:
@@ -649,8 +649,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3372220415
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -667,15 +667,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.5
-  m_fontSizeBase: 7.3
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 0
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 7.39
   m_fontSizeMax: 100
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 2
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 1.1905136, w: -0.16078568}
+  m_margin: {x: 0.0546875, y: 3.041504, z: -0.092567444, w: 2.3614311}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -822,7 +822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -20.4, y: 17.106903}
+  m_AnchoredPosition: {x: -22.32, y: 17.106903}
   m_SizeDelta: {x: 24.8133, y: 17.9388}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1411178946637925687
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ab0990913863f46bd6cfa75ec845fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 11400000, guid: b3b22f2c70575b74daa249d7102b3dd7, type: 2}
   NameText: {fileID: 5026522754195740149}
   DescriptionText: {fileID: 3780019418590107365}
   ArtworkImage: {fileID: 4151148684482615130}

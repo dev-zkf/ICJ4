@@ -41,6 +41,10 @@ public class CardSlot : MonoBehaviour
 				CardManager.instance.availablePlaceableSlots[i] = false;
 				return;
 			}
+			else if (cardData.ManaCost > GameManager.instance.playerMana)
+			{
+				SoundFXManagergerg.Instance.PlaySoundFXClip(GameManager.instance.NuhUhSFX, transform, 0.4f);
+			}
 		}
 
 		PopDown();
@@ -110,12 +114,14 @@ public class CardSlot : MonoBehaviour
 		{
 			GameManager.instance.playerMana += GameManager.instance.discardMana;
 			CardManager.instance.availableSlots[handIndex] = true;
-		}
+			GameManager.instance.playerHealth -= 2;
+        }
 		else
 		{
 			GameManager.instance.aiMana += GameManager.instance.discardMana;
 			CardManager.instance.AI_availableSlots[handIndex] = true;
-		}
+            GameManager.instance.aiHealth -= 2;
+        }
 
 		MoveToDiscard();
 	}
