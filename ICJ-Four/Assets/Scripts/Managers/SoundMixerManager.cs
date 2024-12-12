@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -23,6 +24,10 @@ public class SoundMixerManager : MonoBehaviour
 
 		// Load saved volume settings when the game starts or a new scene is loaded
 		LoadVolumeSettings();
+	}
+	private void Start()
+	{
+		LoadVolumeSettings(); // load again ig??
 	}
 
 	// Set Master Volume with logarithmic scale (0 to 1 range)
@@ -56,18 +61,42 @@ public class SoundMixerManager : MonoBehaviour
 		{
 			float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
 			audioMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolume) * 20f);
+			try
+			{
+				SetSliders.instance.SetMasterSlider(masterVolume);
+			}
+			catch(Exception e)
+			{
+				Debug.Log($"{e.Message}: Sliders prob not loaded yet");
+			}
 		}
 
 		if (PlayerPrefs.HasKey("SoundFxVolume"))
 		{
 			float soundFxVolume = PlayerPrefs.GetFloat("SoundFxVolume");
 			audioMixer.SetFloat("SoundFxVolume", Mathf.Log10(soundFxVolume) * 20f);
+			try
+			{
+				SetSliders.instance.SetSfxSlider(soundFxVolume);
+			}
+			catch (Exception e)
+			{
+				Debug.Log($"{e.Message}: Sliders prob not loaded yet");
+			}
 		}
 
 		if (PlayerPrefs.HasKey("MusicVolume"))
 		{
 			float musicVolume = PlayerPrefs.GetFloat("MusicVolume");
 			audioMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolume) * 20f);
+			try
+			{
+				SetSliders.instance.SetMusicSlider(musicVolume);
+			}
+			catch (Exception e)
+			{
+				Debug.Log($"{e.Message}: Sliders prob not loaded yet");
+			}
 		}
 	}
 }
