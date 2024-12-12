@@ -1684,7 +1684,70 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      piecesWhite_0: -9019238747643277428
+      piecesWhite_1: -9144396612101589552
+      piecesWhite_10: -6905017881665828350
+      piecesWhite_11: -3535302573973975402
+      piecesWhite_12: -1088609815440705503
+      piecesWhite_13: 7340607277641861155
+      piecesWhite_14: 5050732500447616632
+      piecesWhite_15: -604187974922747808
+      piecesWhite_16: -8813320117757329138
+      piecesWhite_17: 8174958125242142339
+      piecesWhite_18: 8189355945783419489
+      piecesWhite_19: 2642471506278355151
+      piecesWhite_2: 5669690859796069309
+      piecesWhite_20: 5803269551657320673
+      piecesWhite_21: 1005681775463700630
+      piecesWhite_22: 6450401128035499953
+      piecesWhite_23: -393011410102795583
+      piecesWhite_24: -8782335034447138392
+      piecesWhite_25: -179161332626959590
+      piecesWhite_26: -4333301071783833213
+      piecesWhite_27: -7137055889055445746
+      piecesWhite_28: 3864100424910461186
+      piecesWhite_29: -5293776533553932219
+      piecesWhite_3: 5779511565121839081
+      piecesWhite_30: -41066800097354984
+      piecesWhite_31: 5836727618045208833
+      piecesWhite_32: -6751736890487951980
+      piecesWhite_33: -9169017100185185147
+      piecesWhite_34: -7943849742617746775
+      piecesWhite_35: -9110030106653409652
+      piecesWhite_36: 4899873656193893249
+      piecesWhite_37: 940211166777061085
+      piecesWhite_38: 6735201553048791060
+      piecesWhite_39: -7025438540347239910
+      piecesWhite_4: -4883355534811211322
+      piecesWhite_40: 4550450193899542612
+      piecesWhite_41: -6517410437919728172
+      piecesWhite_42: 7446126592761430834
+      piecesWhite_43: -3909166236709449341
+      piecesWhite_44: 6966437324068300561
+      piecesWhite_45: 676455327680204001
+      piecesWhite_46: -8830920484029499348
+      piecesWhite_47: -8888273913320552606
+      piecesWhite_48: -4128289455404109401
+      piecesWhite_49: 791393860494548743
+      piecesWhite_5: -5798658879391065451
+      piecesWhite_50: -5050412479014507528
+      piecesWhite_51: 8710293429402919131
+      piecesWhite_52: -3850938363910119843
+      piecesWhite_53: 7928259578256237421
+      piecesWhite_54: 4857990476958942147
+      piecesWhite_55: -7830118743753964292
+      piecesWhite_56: 4388889880002785546
+      piecesWhite_57: -5043538488798953357
+      piecesWhite_58: -5055405535060594944
+      piecesWhite_59: -6672203268072242811
+      piecesWhite_6: 1501790152210885445
+      piecesWhite_60: 4929223038981065575
+      piecesWhite_61: -3862703679655336058
+      piecesWhite_62: -5692195127017805826
+      piecesWhite_7: -6967230087695546005
+      piecesWhite_8: 5182334661547511199
+      piecesWhite_9: 7955069989933107399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

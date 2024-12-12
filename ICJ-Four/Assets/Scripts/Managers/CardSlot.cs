@@ -76,7 +76,7 @@ public class CardSlot : MonoBehaviour
 				CardManager.instance.AI_availablePlaceableSlots[i] = false;
 				played = true;
 				owner = Owner.AI;
-				StartCoroutine(AiTouchCards());
+				//StartCoroutine(AiTouchCards());
 				Debug.Log($"AI played card {GetCardData().name}");
 				return;
 			}

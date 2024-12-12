@@ -1684,7 +1684,70 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      piecesBlack_0: 857762424635972268
+      piecesBlack_1: 330026755516148500
+      piecesBlack_10: -2986071592492284974
+      piecesBlack_11: -8499640043245511905
+      piecesBlack_12: -7510344806982737127
+      piecesBlack_13: -8985981244773749688
+      piecesBlack_14: -3382833731740794939
+      piecesBlack_15: 2372508367554255263
+      piecesBlack_16: 2134660143932775565
+      piecesBlack_17: -3393018026308384671
+      piecesBlack_18: 5523356947018475198
+      piecesBlack_19: -7580712904686912050
+      piecesBlack_2: -4915272759973002518
+      piecesBlack_20: -5367899418899419094
+      piecesBlack_21: -4112392355587356540
+      piecesBlack_22: -6476822272175050637
+      piecesBlack_23: 5342506219761881178
+      piecesBlack_24: -1700813237525653136
+      piecesBlack_25: -2894196140438956978
+      piecesBlack_26: -3651100762034670894
+      piecesBlack_27: -6779763929296006627
+      piecesBlack_28: 4193695291249305524
+      piecesBlack_29: 547059322747125469
+      piecesBlack_3: -7153912708712265532
+      piecesBlack_30: 740035092247376118
+      piecesBlack_31: 323768793305901799
+      piecesBlack_32: -6835140757694078285
+      piecesBlack_33: 2688238227571973941
+      piecesBlack_34: -8193982047246329456
+      piecesBlack_35: 3082038560533138541
+      piecesBlack_36: -3067150374163716627
+      piecesBlack_37: -2532549649883598123
+      piecesBlack_38: 1600462568972466052
+      piecesBlack_39: 6049802850065443538
+      piecesBlack_4: -8831098441387310908
+      piecesBlack_40: 7894152648482626908
+      piecesBlack_41: -4807751431948242141
+      piecesBlack_42: -3372841699915007007
+      piecesBlack_43: -8850907980696808471
+      piecesBlack_44: -8180462549241569002
+      piecesBlack_45: 6188179086093077911
+      piecesBlack_46: -8896453777874477056
+      piecesBlack_47: -8052192413242623749
+      piecesBlack_48: 7367068839833551932
+      piecesBlack_49: 2217077797898460826
+      piecesBlack_5: -577976910156087939
+      piecesBlack_50: 8924024283725574396
+      piecesBlack_51: -2682661436371319392
+      piecesBlack_52: -6662353433880877553
+      piecesBlack_53: 6882190442486842373
+      piecesBlack_54: 5568089594139016866
+      piecesBlack_55: 7045678842822725669
+      piecesBlack_56: 748329150688747070
+      piecesBlack_57: 1480038572570054529
+      piecesBlack_58: -7770716463979761493
+      piecesBlack_59: -6459455748137628856
+      piecesBlack_6: 9104226078335096910
+      piecesBlack_60: 2963066546511861380
+      piecesBlack_61: -5916742405746844471
+      piecesBlack_62: -5576117861659898630
+      piecesBlack_7: -5041097755673467823
+      piecesBlack_8: 5205135615771546568
+      piecesBlack_9: -491460965483036291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

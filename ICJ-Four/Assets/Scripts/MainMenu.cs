@@ -15,8 +15,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
-
-
     public void QuitGame()
     {
         Application.Quit();
@@ -30,5 +28,4 @@ public class MainMenu : MonoBehaviour
     {
 		SoundFXManagergerg.Instance.PlaySoundFXClip(onHoverSFX, transform, 1f);
 	}
-
 }

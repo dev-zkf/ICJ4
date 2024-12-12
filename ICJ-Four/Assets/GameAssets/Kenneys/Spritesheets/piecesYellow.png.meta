@@ -1684,7 +1684,70 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      piecesYellow_0: 627362568982485041
+      piecesYellow_1: -8274178377910118583
+      piecesYellow_10: -6231784043587801088
+      piecesYellow_11: 4922412312192474312
+      piecesYellow_12: -4140106990927562176
+      piecesYellow_13: -760795644026292933
+      piecesYellow_14: -2730437126678632236
+      piecesYellow_15: 8954281313456469259
+      piecesYellow_16: -417070929620549231
+      piecesYellow_17: 757742446324030100
+      piecesYellow_18: 6676888587786419279
+      piecesYellow_19: -5415300457153527258
+      piecesYellow_2: -3135156913649618496
+      piecesYellow_20: -8729636250292501553
+      piecesYellow_21: -1129250865963828764
+      piecesYellow_22: -8185906531711561897
+      piecesYellow_23: 3344455486003390341
+      piecesYellow_24: 1708943525869581016
+      piecesYellow_25: 976288302310548001
+      piecesYellow_26: -5845966978977448161
+      piecesYellow_27: 374688551452353567
+      piecesYellow_28: 5367030883671377652
+      piecesYellow_29: 6777354208011431115
+      piecesYellow_3: 2941065544893240460
+      piecesYellow_30: -5335359750096907085
+      piecesYellow_31: 1388252390749780017
+      piecesYellow_32: 5419310302249072841
+      piecesYellow_33: 9195014283313567687
+      piecesYellow_34: 8634423336694024030
+      piecesYellow_35: 2583855066505028768
+      piecesYellow_36: -7189250657322288004
+      piecesYellow_37: -5186653387097612378
+      piecesYellow_38: -6381358379647262041
+      piecesYellow_39: -3194050125968870527
+      piecesYellow_4: 5446595306576717577
+      piecesYellow_40: 8125128226333419060
+      piecesYellow_41: 4917713632080632916
+      piecesYellow_42: 6108772093061960445
+      piecesYellow_43: -8470089818906651473
+      piecesYellow_44: -2148864273289140937
+      piecesYellow_45: 1350715609810247354
+      piecesYellow_46: -9220227009158097558
+      piecesYellow_47: 4209635215159391119
+      piecesYellow_48: -2426382634177550744
+      piecesYellow_49: -3051353061850025056
+      piecesYellow_5: 8580852439897189774
+      piecesYellow_50: -7000522419112979304
+      piecesYellow_51: 6934877220073168655
+      piecesYellow_52: 4795114105054590123
+      piecesYellow_53: -8626598865766116843
+      piecesYellow_54: -7953884223242638540
+      piecesYellow_55: 5916166618615501779
+      piecesYellow_56: 7017686278548743303
+      piecesYellow_57: -2600864105453830710
+      piecesYellow_58: -7620948611203598380
+      piecesYellow_59: -4890790415795285872
+      piecesYellow_6: -2253445887726040323
+      piecesYellow_60: 2757986123713718260
+      piecesYellow_61: -279784031246747182
+      piecesYellow_62: -1247286558594688256
+      piecesYellow_7: -940239800900909006
+      piecesYellow_8: 2084314141340132793
+      piecesYellow_9: -4221017345304555755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
