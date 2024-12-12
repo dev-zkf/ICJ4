@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 57e9e1d74c26ff5428e19c2d679d82e9
+guid: fb0bdf5e43bc4854dab590d451be78ca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6357205743014664250
-    second: SnailCatPNG_0
+      213: 1208040086343421634
+    second: image_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SnailCatPNG_0
+      name: image_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 6
-        width: 57
-        height: 52
+        x: 0
+        y: 0
+        width: 280
+        height: 376
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a38567cf0f4593850800000000000000
-      internalID: 6357205743014664250
+      spriteID: 2ce8eecde02d3c010800000000000000
+      internalID: 1208040086343421634
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      SnailCatPNG_0: 6357205743014664250
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GarfieldCatPNG_0: 8707243072837297326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

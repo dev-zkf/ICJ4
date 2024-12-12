@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MakeupCatPNG_0: -1547947166918090390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

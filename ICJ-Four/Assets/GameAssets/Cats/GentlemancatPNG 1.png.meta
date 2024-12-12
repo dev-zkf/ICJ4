@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GentlemancatPNG 1_0: 2880361126228659273
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
