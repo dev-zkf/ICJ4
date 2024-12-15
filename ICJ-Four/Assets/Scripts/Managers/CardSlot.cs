@@ -28,7 +28,7 @@ public class CardSlot : MonoBehaviour
 
 			if (cardData.ManaCard)
 			{
-				PlayManaCard();
+				CastMana();
 				return;
 			}
 
@@ -49,7 +49,7 @@ public class CardSlot : MonoBehaviour
 
 		PopDown();
 	}
-
+	/*  OLD CAST
 	public void AiCastMana()
 	{
 		if (played) return;
@@ -66,6 +66,25 @@ public class CardSlot : MonoBehaviour
         MoveToDiscard();
 		Debug.Log($"Played mana card {GetCardData().name}");
 	}
+	*/
+	public void CastMana()
+	{
+        if (played) return;
+        if (owner == Owner.Player)
+        {
+            GameManager.instance.playerMana += GetCardData().ManaCost;
+            CardManager.instance.availableSlots[handIndex] = true;
+            MoveToDiscard();
+            Debug.Log($"Played mana card {GetCardData().name}");
+        }
+        else
+        {
+            GameManager.instance.aiMana += GetCardData().ManaCost;
+            CardManager.instance.AI_availableSlots[handIndex] = true;
+            MoveToDiscard();
+            Debug.Log($"AI cast mana from card {GetCardData().name}");
+        }
+    }
 
 	public void AIPlayCard()
 	{
@@ -90,8 +109,13 @@ public class CardSlot : MonoBehaviour
 	public void MoveToDiscardPile()
 	{
 		if (played || GameManager.instance.discards <= 0) return;
+        if (GetCardData().ManaCard)
+        {
+            SoundFXManagergerg.Instance.PlaySoundFXClip(GameManager.instance.NuhUhSFX, transform, 0.4f);
+            return;
+        }
 
-		GameManager.instance.discards--;
+        GameManager.instance.discards--;
 
 		if (owner == Owner.Player)
 		{

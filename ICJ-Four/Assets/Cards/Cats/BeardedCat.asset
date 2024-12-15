@@ -17,9 +17,12 @@ MonoBehaviour:
   Artwork: {fileID: 2576930606345880607, guid: f4563e1f1fc89174ca05b4c78b81125d, type: 3}
   ArtBackground: {fileID: -4888374322302087131, guid: b51d11b8130f46c4dab95d23996724d6, type: 3}
   Background: {fileID: 1091060894787466164, guid: 76b368a93b7646a4d84392c8ddf1a825, type: 3}
+  Foreground: {fileID: 0}
   Nametag: {fileID: -3908480887348375671, guid: 13c39b63d693bcf479fc4e6c39c82c4f, type: 3}
   DescriptionBox: {fileID: 2912989809570503150, guid: 60ecd191255be924191c0164595c8c8f, type: 3}
+  ManaBox: {fileID: 0}
+  Border: {fileID: 0}
   ManaCard: 0
-  ManaCost: 6
+  ManaCost: 12
   Attack: 10
   Health: 7

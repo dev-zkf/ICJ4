@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 		InitializeGame();
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
 		UpdateUI();
 		HandleGameStates();
@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
 		draws = drawsPerTurn;
 		discards = discardsPerTurn;
 		Debug.Log(isPlayerTurn ? "Player's turn" : "AI's turn");
-
-		if (!isPlayerTurn)
+		if (turn <= 0) turn = turnCount;
+        if (!isPlayerTurn)
 		{
 			aiState = AiStates.Draw;
 			StartCoroutine(HandleAiTurn());
@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void HandleGameStates()
+
+    private void HandleGameStates()
 	{
 
 
@@ -174,8 +175,6 @@ public class GameManager : MonoBehaviour
 		}
 
 		Debug.Log($"Battle Starts! Player: {playerHP} HP, {playerATK} ATK | AI: {aiHP} HP, {aiATK} ATK");
-
-		int round = 1;
 		int playerLeftoverDamage;
 		int aiLeftoverDamage;
 		// Precalculate potential damage to apply to loser's real HP
@@ -199,7 +198,7 @@ public class GameManager : MonoBehaviour
 			aiLeftoverDamage = Mathf.Max(0, aiATK - playerHP);
 		}
 
-
+		/*  outdated battle mechanics maybe fixed?
 		// Simulate battle with tick-based damage until one side's HP drops to zero
 			// Player's ticks
 		for (int i = 0; i < playerATK; i++)
@@ -218,33 +217,49 @@ public class GameManager : MonoBehaviour
 				playerHP--;
 			}
 		}
+		*/
 
-		if (playerHP > aiHP && playerATK >= aiHP || playerHP == aiHP && playerATK > aiATK) // player has more hp than ai and can also kill him he wins
-		{
-			if (winnerSelected) return;
-			PlayerWin(playerLeftoverDamage);
-		}
-		else if (playerHP < aiHP && aiATK >= playerHP || playerHP == aiHP && aiATK > playerATK)
-		{
-			if (winnerSelected) return;
-			AiWin(aiLeftoverDamage);
-		}
-		else
-		{
-			if (aiHP == playerHP && aiATK == playerATK)
-			{
-				if (winnerSelected) return;
 
-				Debug.Log("It's a Tie!");
-				STATEtext.text = "Tie";
-				playerHealth -= 2;
-				aiHealth -= 2;
-				isPlayerTurn = !isPlayerTurn;
-				winnerSelected = true;
-				StartCoroutine(SlightResetDelay(2f));
-			}
-		}
-		Debug.Log($"Round {round}: Player {playerHP} HP | AI {aiHP} HP");
+		playerHP -= aiATK;
+		aiHP -= playerATK;
+
+        // Check if the player wins
+        if (playerHP > aiHP && playerATK >= aiHP || playerHP == aiHP && playerATK > aiATK)
+        {
+            if (winnerSelected) return;
+            Debug.Log("Player Wins!");
+            PlayerWin(playerLeftoverDamage);
+            winnerSelected = true;
+            return;
+        }
+
+        // Check if the AI wins
+        if (aiHP > playerHP && aiATK >= playerHP || playerHP == aiHP && aiATK > playerATK)
+        {
+            if (winnerSelected) return;
+            Debug.Log("AI Wins!");
+            AiWin(aiLeftoverDamage);
+            winnerSelected = true;
+            return;
+        }
+
+        // Check for ties
+        if (playerHP == aiHP && playerATK == aiATK || playerHP <= aiATK && aiHP <= playerATK)
+        {
+            if (winnerSelected) return;
+            Debug.Log("It's a Tie!");
+            STATEtext.text = "Tie";
+            playerHealth -= 2;
+            aiHealth -= 2;
+            isPlayerTurn = !isPlayerTurn;
+            winnerSelected = true;
+            StartCoroutine(SlightResetDelay(2f));
+            return;
+        }
+
+        // Default case: No valid winner or tie (shouldn't happen if logic is correct)
+        Debug.LogError("Unexpected state: Softlocked or invalid game state.");
+        STATEtext.text = "Error: Invalid State";
 		/* old win system
 		// If somehow both are eliminated in the same tick
 		if (playerHP <= 0 && aiHP <= 0 && !winnerSelected)
@@ -291,12 +306,13 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(SlightResetDelay(2f));
 
 	}
+
 	private void AiWin(int aiLeftoverDamage)
 	{
 		playerHealth -= aiLeftoverDamage; // Apply leftover damage only once
 		winnerSelected = true;
 		isPlayerTurn = false;
-		STATEtext.text = "AI won";
+        STATEtext.text = "AI won";
 		StartCoroutine(SlightResetDelay(2f));
 	}
 
@@ -333,17 +349,21 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private IEnumerator SlightResetDelay(float delay)
-	{
-		yield return new WaitForSeconds(delay);
-		ClearGame();
-		turn = turnCount;
-		STATEtext.text = "";
-		winnerSelected = false;
-		StartTurn();
-	}
+    private IEnumerator SlightResetDelay(float delay)
+    {
+        Debug.Log("Resetting game state after delay.");
+        ClearGame();
+        yield return new WaitForSeconds(delay);
 
-	private IEnumerator HandleAiTurn()
+
+		winnerSelected = false;
+        STATEtext.text = "";
+        Debug.Log($"Starting next turn. isPlayerTurn: {isPlayerTurn}");
+        StartTurn();
+    }
+
+
+    private IEnumerator HandleAiTurn()
 	{
 		float delay = 0.5f;
 
@@ -366,7 +386,7 @@ public class GameManager : MonoBehaviour
 						var card = cardSlot.GetComponent<CardDisplay>().card;
 						if (card.ManaCard)
 						{
-							cardSlot.AiCastMana();
+							cardSlot.CastMana();
 							yield return new WaitForSeconds(delay);
 						}
 					}
