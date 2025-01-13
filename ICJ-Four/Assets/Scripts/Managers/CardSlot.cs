@@ -32,54 +32,36 @@ public class CardSlot : MonoBehaviour
 				return;
 			}
 
-			if (CardManager.instance.availablePlaceableSlots[i] && cardData.ManaCost <= GameManager.instance.playerMana)
+			if (CardManager.instance.availablePlaceableSlots[i] && cardData.ManaCost <= MatchManager.instance.playerMana)
 			{
-				GameManager.instance.playerMana -= cardData.ManaCost;
+				MatchManager.instance.playerMana -= cardData.ManaCost;
 				StartCoroutine(MoveToPlayAreaWithDelay(i));
 				played = true;
 				owner = Owner.Player;
 				CardManager.instance.availablePlaceableSlots[i] = false;
 				return;
 			}
-			else if (cardData.ManaCost > GameManager.instance.playerMana)
+			else if (cardData.ManaCost > MatchManager.instance.playerMana)
 			{
-				SoundFXManagergerg.Instance.PlaySoundFXClip(GameManager.instance.NuhUhSFX, transform, 0.4f);
+				SoundFXManagergerg.Instance.PlaySoundFXClip(MatchManager.instance.NuhUhSFX, transform, 0.4f);
 			}
 		}
 
 		PopDown();
 	}
-	/*  OLD CAST
-	public void AiCastMana()
-	{
-		if (played) return;
-
-		GameManager.instance.aiMana += GetCardData().ManaCost;
-        CardManager.instance.AI_availableSlots[handIndex] = true;
-        MoveToDiscard();
-		Debug.Log($"AI cast mana from card {GetCardData().name}");
-	}
-	private void PlayManaCard()
-	{
-		GameManager.instance.playerMana += GetCardData().ManaCost;
-        CardManager.instance.availableSlots[handIndex] = true;
-        MoveToDiscard();
-		Debug.Log($"Played mana card {GetCardData().name}");
-	}
-	*/
 	public void CastMana()
 	{
         if (played) return;
         if (owner == Owner.Player)
         {
-            GameManager.instance.playerMana += GetCardData().ManaCost;
+			MatchManager.instance.playerMana += GetCardData().ManaCost;
             CardManager.instance.availableSlots[handIndex] = true;
             MoveToDiscard();
             Debug.Log($"Played mana card {GetCardData().name}");
         }
         else
         {
-            GameManager.instance.aiMana += GetCardData().ManaCost;
+			MatchManager.instance.aiMana += GetCardData().ManaCost;
             CardManager.instance.AI_availableSlots[handIndex] = true;
             MoveToDiscard();
             Debug.Log($"AI cast mana from card {GetCardData().name}");
@@ -94,7 +76,7 @@ public class CardSlot : MonoBehaviour
 		{
 			if (CardManager.instance.AI_availablePlaceableSlots[i])
 			{
-				GameManager.instance.aiMana -= GetCardData().ManaCost;
+				MatchManager.instance.aiMana -= GetCardData().ManaCost;
 				MoveToPlayArea(CardManager.instance.AI_placeableSlots[i]);
 				CardManager.instance.AI_availablePlaceableSlots[i] = false;
 				played = true;
@@ -108,23 +90,23 @@ public class CardSlot : MonoBehaviour
 
 	public void MoveToDiscardPile()
 	{
-		if (played || GameManager.instance.discards <= 0) return;
+		if (played || MatchManager.instance.discards <= 0) return;
         if (GetCardData().ManaCard)
         {
-            SoundFXManagergerg.Instance.PlaySoundFXClip(GameManager.instance.NuhUhSFX, transform, 0.4f);
+            SoundFXManagergerg.Instance.PlaySoundFXClip(MatchManager.instance.NuhUhSFX, transform, 0.4f);
             return;
         }
 
-        GameManager.instance.discards--;
+		MatchManager.instance.discards--;
 
 		if (owner == Owner.Player)
 		{
-			GameManager.instance.playerMana += GameManager.instance.discardMana;
+			MatchManager.instance.playerMana += MatchManager.instance.discardMana;
 			CardManager.instance.availableSlots[handIndex] = true;
 		}
 		else
 		{
-			GameManager.instance.aiMana += GameManager.instance.discardMana;
+			MatchManager.instance.aiMana += MatchManager.instance.discardMana;
 			CardManager.instance.AI_availableSlots[handIndex] = true;
 		}
 
@@ -136,15 +118,15 @@ public class CardSlot : MonoBehaviour
 
 		if (owner == Owner.Player)
 		{
-			GameManager.instance.playerMana += GameManager.instance.discardMana;
+			MatchManager.instance.playerMana += MatchManager.instance.discardMana;
 			CardManager.instance.availableSlots[handIndex] = true;
-			GameManager.instance.playerHealth -= 2;
+			MatchManager.instance.playerHealth -= 2;
         }
 		else
 		{
-			GameManager.instance.aiMana += GameManager.instance.discardMana;
+			MatchManager.instance.aiMana += MatchManager.instance.discardMana;
 			CardManager.instance.AI_availableSlots[handIndex] = true;
-            GameManager.instance.aiHealth -= 2;
+            MatchManager.instance.aiHealth -= 2;
         }
 
 		MoveToDiscard();

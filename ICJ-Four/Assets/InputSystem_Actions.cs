@@ -24,7 +24,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem_Actions"",
     ""maps"": [
         {
-            ""name"": ""CharactherControls"",
+            ""name"": ""Controls"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
@@ -94,7 +94,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -103,7 +103,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -326,17 +326,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3c1c7f0-bd20-4ee7-a0f1-899b24bca6d7"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1077,17 +1066,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // CharactherControls
-        m_CharactherControls = asset.FindActionMap("CharactherControls", throwIfNotFound: true);
-        m_CharactherControls_Move = m_CharactherControls.FindAction("Move", throwIfNotFound: true);
-        m_CharactherControls_Look = m_CharactherControls.FindAction("Look", throwIfNotFound: true);
-        m_CharactherControls_Attack = m_CharactherControls.FindAction("Attack", throwIfNotFound: true);
-        m_CharactherControls_Interact = m_CharactherControls.FindAction("Interact", throwIfNotFound: true);
-        m_CharactherControls_Crouch = m_CharactherControls.FindAction("Crouch", throwIfNotFound: true);
-        m_CharactherControls_Jump = m_CharactherControls.FindAction("Jump", throwIfNotFound: true);
-        m_CharactherControls_Previous = m_CharactherControls.FindAction("Previous", throwIfNotFound: true);
-        m_CharactherControls_Next = m_CharactherControls.FindAction("Next", throwIfNotFound: true);
-        m_CharactherControls_Sprint = m_CharactherControls.FindAction("Sprint", throwIfNotFound: true);
+        // Controls
+        m_Controls = asset.FindActionMap("Controls", throwIfNotFound: true);
+        m_Controls_Move = m_Controls.FindAction("Move", throwIfNotFound: true);
+        m_Controls_Look = m_Controls.FindAction("Look", throwIfNotFound: true);
+        m_Controls_Attack = m_Controls.FindAction("Attack", throwIfNotFound: true);
+        m_Controls_Interact = m_Controls.FindAction("Interact", throwIfNotFound: true);
+        m_Controls_Crouch = m_Controls.FindAction("Crouch", throwIfNotFound: true);
+        m_Controls_Jump = m_Controls.FindAction("Jump", throwIfNotFound: true);
+        m_Controls_Previous = m_Controls.FindAction("Previous", throwIfNotFound: true);
+        m_Controls_Next = m_Controls.FindAction("Next", throwIfNotFound: true);
+        m_Controls_Sprint = m_Controls.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1104,7 +1093,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
 
     ~@InputSystem_Actions()
     {
-        UnityEngine.Debug.Assert(!m_CharactherControls.enabled, "This will cause a leak and performance issues, InputSystem_Actions.CharactherControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Controls.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Controls.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
     }
 
@@ -1164,40 +1153,40 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // CharactherControls
-    private readonly InputActionMap m_CharactherControls;
-    private List<ICharactherControlsActions> m_CharactherControlsActionsCallbackInterfaces = new List<ICharactherControlsActions>();
-    private readonly InputAction m_CharactherControls_Move;
-    private readonly InputAction m_CharactherControls_Look;
-    private readonly InputAction m_CharactherControls_Attack;
-    private readonly InputAction m_CharactherControls_Interact;
-    private readonly InputAction m_CharactherControls_Crouch;
-    private readonly InputAction m_CharactherControls_Jump;
-    private readonly InputAction m_CharactherControls_Previous;
-    private readonly InputAction m_CharactherControls_Next;
-    private readonly InputAction m_CharactherControls_Sprint;
-    public struct CharactherControlsActions
+    // Controls
+    private readonly InputActionMap m_Controls;
+    private List<IControlsActions> m_ControlsActionsCallbackInterfaces = new List<IControlsActions>();
+    private readonly InputAction m_Controls_Move;
+    private readonly InputAction m_Controls_Look;
+    private readonly InputAction m_Controls_Attack;
+    private readonly InputAction m_Controls_Interact;
+    private readonly InputAction m_Controls_Crouch;
+    private readonly InputAction m_Controls_Jump;
+    private readonly InputAction m_Controls_Previous;
+    private readonly InputAction m_Controls_Next;
+    private readonly InputAction m_Controls_Sprint;
+    public struct ControlsActions
     {
         private @InputSystem_Actions m_Wrapper;
-        public CharactherControlsActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_CharactherControls_Move;
-        public InputAction @Look => m_Wrapper.m_CharactherControls_Look;
-        public InputAction @Attack => m_Wrapper.m_CharactherControls_Attack;
-        public InputAction @Interact => m_Wrapper.m_CharactherControls_Interact;
-        public InputAction @Crouch => m_Wrapper.m_CharactherControls_Crouch;
-        public InputAction @Jump => m_Wrapper.m_CharactherControls_Jump;
-        public InputAction @Previous => m_Wrapper.m_CharactherControls_Previous;
-        public InputAction @Next => m_Wrapper.m_CharactherControls_Next;
-        public InputAction @Sprint => m_Wrapper.m_CharactherControls_Sprint;
-        public InputActionMap Get() { return m_Wrapper.m_CharactherControls; }
+        public ControlsActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Controls_Move;
+        public InputAction @Look => m_Wrapper.m_Controls_Look;
+        public InputAction @Attack => m_Wrapper.m_Controls_Attack;
+        public InputAction @Interact => m_Wrapper.m_Controls_Interact;
+        public InputAction @Crouch => m_Wrapper.m_Controls_Crouch;
+        public InputAction @Jump => m_Wrapper.m_Controls_Jump;
+        public InputAction @Previous => m_Wrapper.m_Controls_Previous;
+        public InputAction @Next => m_Wrapper.m_Controls_Next;
+        public InputAction @Sprint => m_Wrapper.m_Controls_Sprint;
+        public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CharactherControlsActions set) { return set.Get(); }
-        public void AddCallbacks(ICharactherControlsActions instance)
+        public static implicit operator InputActionMap(ControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IControlsActions instance)
         {
-            if (instance == null || m_Wrapper.m_CharactherControlsActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_CharactherControlsActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_ControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ControlsActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -1227,7 +1216,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Sprint.canceled += instance.OnSprint;
         }
 
-        private void UnregisterCallbacks(ICharactherControlsActions instance)
+        private void UnregisterCallbacks(IControlsActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -1258,21 +1247,21 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Sprint.canceled -= instance.OnSprint;
         }
 
-        public void RemoveCallbacks(ICharactherControlsActions instance)
+        public void RemoveCallbacks(IControlsActions instance)
         {
-            if (m_Wrapper.m_CharactherControlsActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_ControlsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ICharactherControlsActions instance)
+        public void SetCallbacks(IControlsActions instance)
         {
-            foreach (var item in m_Wrapper.m_CharactherControlsActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_ControlsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_CharactherControlsActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_ControlsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public CharactherControlsActions @CharactherControls => new CharactherControlsActions(this);
+    public ControlsActions @Controls => new ControlsActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1436,7 +1425,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_XRSchemeIndex];
         }
     }
-    public interface ICharactherControlsActions
+    public interface IControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);

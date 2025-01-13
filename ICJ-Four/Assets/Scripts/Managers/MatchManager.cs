@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class MatchManager : MonoBehaviour
 {
 	public TMP_Text ManaText;
 	public TMP_Text AiManaText;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 	public TMP_Text P_HealthText;
 	public TMP_Text A_HealthText;
 	public TMP_Text STATEtext;
-	public static GameManager instance;
+	public static MatchManager instance;
     public AudioClip NuhUhSFX;
 
     [SerializeField, Foldout("Settings")] private int drawsPerTurn = 5;

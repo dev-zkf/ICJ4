@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Stoner Cat
   Description: LIkes Catnip a little too much...
+  CardImage: {fileID: 5645436802895415084, guid: 64aeb3186bf36e2439b5134081eeed28, type: 3}
   Artwork: {fileID: 5141398729540602678, guid: 627268e08da266545bfe74a3ae9a1b21, type: 3}
   ArtBackground: {fileID: 5738046021577176803, guid: d68add4fb2f94fe438a98a9f979e84dc, type: 3}
-  Background: {fileID: 5645436802895415084, guid: 64aeb3186bf36e2439b5134081eeed28, type: 3}
-  Foreground: {fileID: 0}
   Nametag: {fileID: 6669749140366230621, guid: 36e0819fee5f20844b10005b9d2a169f, type: 3}
   DescriptionBox: {fileID: -7359245063904021876, guid: f9a7124ddce5e324bbfbca50e043a6b8, type: 3}
   ManaBox: {fileID: 0}
   Border: {fileID: 0}
+  Foreground: {fileID: 0}
   ManaCard: 0
   ManaCost: 10
   Attack: 4

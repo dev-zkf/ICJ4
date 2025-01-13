@@ -54,7 +54,7 @@ public class SlotInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExit
             }
             else if (child.gameObject.activeSelf && eventData.button == PointerEventData.InputButton.Right && clickable && child.GetComponent<CardSlot>() != null)
             {
-                if (GameManager.instance.discards > 0)
+                if (MatchManager.instance.discards > 0)
 				    SoundFXManagergerg.Instance.PlaySoundFXClip(discardSFX, transform, 1.5f);
                 child.GetComponentInChildren<CardSlot>().MoveToDiscardPile();
 			}

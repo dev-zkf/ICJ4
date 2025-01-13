@@ -8,44 +8,38 @@ public class CardDisplay : MonoBehaviour
     [Expandable]
     public Cards card;
 
-    public TMP_Text NameText;
-    public TMP_Text DescriptionText;
+	public TMP_Text NameText;
+	public Image CardImage;
+	[DisableIf("isMana")] public Image Nametag;
+	[DisableIf("isMana")] public Image ArtworkImage;
+	[DisableIf("isMana")] public Image ArtworkBackground;
+	[DisableIf("isMana")] public TMP_Text StatsText;
+    [EnableIf("isMana")] public Image Foreground;
+    [EnableIf("isMana")] public Image ManaBox;
+    [EnableIf("isMana")] public Image Border;
+	public TMP_Text ManaText;
 
-    public Image ArtworkImage;
-    public Image ArtBackground;
-    public Image Background;
-    public Image Foreground;
-    public Image Nametag;
-    public Image DescriptionBox;
-    public Image ManaBox;
-    public Image Border;
-
-    public TMP_Text ManaText;
-    public TMP_Text AttackText;
-    public TMP_Text healthText;
-    public TMP_Text statsText;
-
+    public bool isMana = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         try
         {
             NameText.text = card.Name;
-            DescriptionText.text = card.Description;
 
             ArtworkImage.sprite = card.Artwork;
-            ArtBackground.sprite = card.ArtBackground;
-            Background.sprite = card.Background;
+            ArtworkBackground.sprite = card.ArtBackground;
+            CardImage.sprite = card.CardImage;
             Nametag.sprite = card.Nametag;
-            DescriptionBox.sprite = card.DescriptionBox;
-            if (card.Foreground != null) Foreground.sprite = card.Foreground;
-            if(card.ManaBox != null) ManaBox.sprite = card.ManaBox;
-            if (card.Border != null) Border.sprite = card.Border;
+            if (isMana)
+            {
+                Foreground.sprite = card.Foreground;
+                ManaBox.sprite = card.ManaBox;
+                Border.sprite = card.Border;
+            }
 
             ManaText.text = card.ManaCost.ToString();
-            AttackText.text = card.Attack.ToString();
-            healthText.text = card.Health.ToString();
-            statsText.text = $"{card.Attack.ToString()}/{card.Health.ToString()}";
+            StatsText.text = $"{card.Attack.ToString()}/{card.Health.ToString()}";
         }
         catch(System.Exception e)
         {
