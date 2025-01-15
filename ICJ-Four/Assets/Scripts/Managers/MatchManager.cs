@@ -5,18 +5,14 @@ using NaughtyAttributes;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MatchManager : MonoBehaviour
 {
-	public TMP_Text ManaText;
-	public TMP_Text AiManaText;
 	public TMP_Text DrawCount;
 	public TMP_Text DiscardCount;
-	public TMP_Text P_HealthText;
-	public TMP_Text A_HealthText;
-	public TMP_Text STATEtext;
 	public static MatchManager instance;
-    public AudioClip NuhUhSFX;
+    public SoundEffect NuhUhSFX;
 
     [SerializeField, Foldout("Settings")] private int drawsPerTurn = 5;
 	[SerializeField, Foldout("Settings")] private int discardsPerTurn = 5;
@@ -60,7 +56,6 @@ public class MatchManager : MonoBehaviour
 	private void InitializeGame()
 	{
 		Debug.Log("Game initialized");
-		STATEtext.text = $""; // "hides text box"
 		turn = turnCount;
 		StartTurn();
 	}
@@ -198,28 +193,6 @@ public class MatchManager : MonoBehaviour
 			aiLeftoverDamage = Mathf.Max(0, aiATK - playerHP);
 		}
 
-		/*  outdated battle mechanics maybe fixed?
-		// Simulate battle with tick-based damage until one side's HP drops to zero
-			// Player's ticks
-		for (int i = 0; i < playerATK; i++)
-		{
-			if (aiHP > 0)
-			{
-				aiHP--;
-			}
-		}
-
-		// AI's ticks
-		for (int i = 0; i < aiATK; i++)
-		{
-			if (playerHP > 0)
-			{
-				playerHP--;
-			}
-		}
-		*/
-
-
 		playerHP -= aiATK;
 		aiHP -= playerATK;
 
@@ -248,7 +221,7 @@ public class MatchManager : MonoBehaviour
         {
             if (winnerSelected) return;
             Debug.Log("It's a Tie!");
-            STATEtext.text = "Tie";
+			GameManager.Instance.gameState.text = "Tie";
             playerHealth -= 2;
             aiHealth -= 2;
             isPlayerTurn = !isPlayerTurn;
@@ -259,50 +232,18 @@ public class MatchManager : MonoBehaviour
 
         // Default case: No valid winner or tie (shouldn't happen if logic is correct)
         Debug.LogError("Unexpected state: Softlocked or invalid game state.");
-        STATEtext.text = "Error: Invalid State";
-		/* old win system
-		// If somehow both are eliminated in the same tick
-		if (playerHP <= 0 && aiHP <= 0 && !winnerSelected)
-		{
-			Debug.Log("Both Eliminated! Resolving by Stats...");
-			if (playerHP > aiHP)
-			{
-				Debug.Log("Player Wins by Remaining Stats!");
-				isPlayerTurn = true;
-				STATEtext.text = "Player won";
-				aiHealth -= playerLeftoverDamage; // Apply leftover damage only once
-			}
-			else if (aiHP > playerHP)
-			{
-				Debug.Log("AI Wins by Remaining Stats!");
-				isPlayerTurn = false;
-				STATEtext.text = "AI won";
-				playerHealth -= aiLeftoverDamage; // Apply leftover damage only once
-			}
-			else
-			{
-				Debug.Log("It's a Tie!");
-				STATEtext.text = "Tie";
-				playerHealth -= 2;
-				aiHealth -= 2;   
-				isPlayerTurn = !isPlayerTurn;
-			}
-			winnerSelected = true;
-		}
-
-		// Reset the game state with a delay
-		StartCoroutine(SlightResetDelay(2f));
-		*/
+		GameManager.Instance.gameState.text = "Error: Invalid State";
 	}
 
 
-
+	// MAKE THIS JUST A SINGLE FUNCTION WHEN I CAN BE ASKED USING SWITCHES
 	private void PlayerWin(int playerLeftoverDamage)
 	{
 		aiHealth -= playerLeftoverDamage; // Apply leftover damage only once
 		winnerSelected = true;
 		isPlayerTurn = true;
-		STATEtext.text = "Player won";
+		if ( GameManager.Instance != null ) 
+			GameManager.Instance.gameState.text = "Player won";
 		StartCoroutine(SlightResetDelay(2f));
 
 	}
@@ -312,7 +253,8 @@ public class MatchManager : MonoBehaviour
 		playerHealth -= aiLeftoverDamage; // Apply leftover damage only once
 		winnerSelected = true;
 		isPlayerTurn = false;
-        STATEtext.text = "AI won";
+		if (GameManager.Instance != null)
+			GameManager.Instance.gameState.text = "AI won";
 		StartCoroutine(SlightResetDelay(2f));
 	}
 
@@ -323,12 +265,31 @@ public class MatchManager : MonoBehaviour
 
 	private void UpdateUI()
 	{
-		ManaText.text = playerMana.ToString();
-		AiManaText.text = aiMana.ToString();
-		DrawCount.text = draws.ToString();
-		DiscardCount.text = discards.ToString();
-		P_HealthText.text = playerHealth.ToString();
-		A_HealthText.text = aiHealth.ToString();
+		DrawCount.text = $"Draws [{draws}]";
+		DiscardCount.text = $"Discards [{discards}]";
+		try
+		{
+			GameManager.Instance.gameState.text = $""; // "hides text box"
+			GameManager.Instance.firstPlayerManaCount.text = playerMana.ToString();
+			GameManager.Instance.secondPlayerManaCount.text = aiMana.ToString();
+
+			GameManager.Instance.firstPlayerHpCount.text = playerHealth.ToString();
+			GameManager.Instance.secondPlayerHpCount.text = aiHealth.ToString();
+		}
+		catch { }
+
+	}
+
+	void UpdateFieldSafely(Action updateAction)
+	{
+		try
+		{
+			updateAction();
+		}
+		catch (Exception e)
+		{
+			Debug.Log($"Failed to update field: {e.Message}");
+		}
 	}
 
 	private void ClearGame()
@@ -357,7 +318,8 @@ public class MatchManager : MonoBehaviour
 
 
 		winnerSelected = false;
-        STATEtext.text = "";
+		if (GameManager.Instance != null)
+			GameManager.Instance.gameState.text = "";
         Debug.Log($"Starting next turn. isPlayerTurn: {isPlayerTurn}");
         StartTurn();
     }

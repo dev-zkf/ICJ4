@@ -43,11 +43,10 @@ public class CardSlot : MonoBehaviour
 			}
 			else if (cardData.ManaCost > MatchManager.instance.playerMana)
 			{
-				SoundFXManagergerg.Instance.PlaySoundFXClip(MatchManager.instance.NuhUhSFX, transform, 0.4f);
+				if (AudioManager.Instance != null)
+					AudioManager.Instance.PlaySoundEffect(MatchManager.instance.NuhUhSFX, this.gameObject);
 			}
 		}
-
-		PopDown();
 	}
 	public void CastMana()
 	{
@@ -93,7 +92,7 @@ public class CardSlot : MonoBehaviour
 		if (played || MatchManager.instance.discards <= 0) return;
         if (GetCardData().ManaCard)
         {
-            SoundFXManagergerg.Instance.PlaySoundFXClip(MatchManager.instance.NuhUhSFX, transform, 0.4f);
+            AudioManager.Instance.PlaySoundEffect(MatchManager.instance.NuhUhSFX, this.gameObject);
             return;
         }
 
@@ -133,24 +132,6 @@ public class CardSlot : MonoBehaviour
 	}
 
 
-	
-	public void PopUp()
-	{
-		if (transform.localScale == Vector3.zero) return;
-		scale = transform.localScale;
-		transform.localPosition = Vector3.up * CardManager.instance.onHoverPopAmount * CardManager.instance.UpAmount;
-		this.GetComponent<Canvas>().sortingOrder++;
-		transform.localScale = Vector3.one * CardManager.instance.onHoverPopAmount;
-	}
-
-	public void PopDown()
-	{
-		transform.localPosition = Vector3.zero;
-		this.GetComponent<Canvas>().sortingOrder = layer;
-		if (scale == Vector3.zero) transform.localScale = Vector3.one; else transform.localScale = scale;
-	}
-
-
 	private void MoveToPlayArea(Transform playArea)
 	{
 		if (owner == Owner.Player)
@@ -166,7 +147,7 @@ public class CardSlot : MonoBehaviour
 		CardManager.instance.playedPile.Add(this);
 		transform.SetParent(playArea);
 		transform.localPosition = Vector3.zero;
-		transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+		transform.localScale = playArea.localScale;
 	}
 
     private void MoveToDiscard()
@@ -197,12 +178,5 @@ public class CardSlot : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.2f);
 		MoveToPlayArea(CardManager.instance.placeableSlots[slotIndex]);
-	}
-
-	private IEnumerator AiTouchCards()
-	{
-		PopUp();
-		yield return new WaitForSeconds(0.5f);
-		PopDown();
 	}
 }
