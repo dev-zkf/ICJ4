@@ -718,13 +718,13 @@ MonoBehaviour:
     - 'Welcome to Feline Showdown!
 
       This is a card-based strategy game where
-      you use Cat cards to battle, similar to Magic: The Gathering.
+      you use Cat cards to battle, similar to Magic The Gathering.
 
 
 '
-    - "Why This Tutorial?\nWe created this tutorial because not everyone knows how
-      to use the Info button in the main menu. Don't worry\u2014this guide will help
-      you get started!"
+    - "Why was this tutorial made?\nWe created this tutorial because some people
+      dont know how to press the Info button in the main menu. Don't worry\u2014this
+      guide will help you get started!"
     - 'How to Play
 
 
@@ -746,21 +746,17 @@ MonoBehaviour:
       Be
       strategic! Some cards are more valuable in play than as mana.
 
-
-      Winning
-      the Game:
-
-
-      The game ends when one player''s HP reaches 0.
-
-      Balance
-      your offense and defense to outlast your opponent.'
+      Set to
+      outlast your opponent.'
+    - "Winning the Game: \nYou win the game by getting opponent's HP to 0 and lose
+      if your's goes to 0.\n\nThe game ends when one player's HP reaches 0.\nBalance
+      your offense and defend."
     - "Understanding Cards\nCard Stats:\n\nMana Cost: The top-right corner shows
       the mana cost (represented by a snowflake).\nAttack and HP:\nThe first number
       in the bottom-right corner is the Attack value.\nThe second number is the HP
-      value.\nCombat:\n\nWhen cards battle, the card with higher attack and HP usually
-      wins.\nTo win matches, focus on playing cards with better damage and HP than
-      your opponent\u2019s."
+      value.\n\nCombat:\n\nWhen cards battle, the card with higher attack and HP
+      usually wins.\nTo win matches, focus on playing cards with better damage and
+      HP than your opponent\u2019s."
     - First number at bottom right is attack value and second is Hp value. Player
       who has higher hp and attack value will win the match. So to win you should
       try to get higher dmg and hp than opponents cards.
@@ -1100,8 +1096,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: acec35ba8211c62488cf58bd1f7cbe14, type: 2}
-  m_sharedMaterial: {fileID: -5677560941682757625, guid: acec35ba8211c62488cf58bd1f7cbe14, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
